@@ -41,23 +41,25 @@ include ../node_modules/jade-bootstrap/components/bootswatch
 
 doctype html
 html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport",content="width=device-width, initial-scale=1")
-		meta(name="description",content="")
-		meta(name="author",content="")
-		link(rel="icon",href="../../favicon.ico")
-		title= title
-		block styles
-			link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
-			link(rel="stylesheet",href="/stylesheets/AdminLTE.min.css")
-			link(rel="stylesheet",href="/stylesheets/_all-skins.min.css")
-			link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css")
-			link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
-	body(data-spy="scroll",data-target=".scrollspy" class="hold-transition skin-blue sidebar-mini")
-		block body
-		block content
-		block scripts
-			script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
-			script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    meta(name="description",content="stranger chat")
+    meta(name="author",content="ducnt114")
+    link(rel="icon",href="favicon.ico")
+    title= title
+    block styles
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+      link(rel="stylesheet" href="/stylesheets/AdminLTE.min.css")
+      link(rel="stylesheet" href="/stylesheets/_all-skins.min.css")
+      link(rel="stylesheet" href="/stylesheets/ionicons.min.css")
+      link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
+      link(rel="stylesheet" href="/stylesheets/emojify.min.css")
+  body(data-spy="scroll",data-target=".scrollspy" class="hold-transition skin-blue-light sidebar-mini")
+    block body
+    block content
+    block scripts
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+      script(src="/javascripts/app.min.js")

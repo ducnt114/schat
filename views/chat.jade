@@ -70,15 +70,15 @@ block content
                                         .direct-chat-msg
                                             .direct-chat-info.clearfix
                                                 span(class="direct-chat-name pull-left") Người lạ 1
-                                                span(class="direct-chat-timestamp pull-right") 23 Jan 2:00 pm
+                                                //span(class="direct-chat-timestamp pull-right") 23 Jan 2:00 pm
                                             img(class="direct-chat-img" src="/images/favicon.ico")
-                                            .direct-chat-text Xin chao, toi la Duc
+                                            .direct-chat-text Xin chao, toi la Duc :*
                                         .direct-chat-msg.right
                                             .direct-chat-info.clearfix
                                                 span.direct-chat-name.pull-right Nguyen Trung Duc
-                                                span.direct-chat-timestamp.pull-left 23 Jan 2:00 pm
+                                                //span.direct-chat-timestamp.pull-left 23 Jan 2:00 pm
                                             img(class="direct-chat-img" src="/images/favicon.ico")
-                                            .direct-chat-text Xin chao, toi la Duc
+                                            .direct-chat-text Xin chao, toi la Duc :)
 
                                 .box-footer
                                     .input-group
@@ -88,5 +88,6 @@ block content
 
 
 block append scripts
+    script(src="//cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js")
     script(src="/socket.io/socket.io.js")
     script(src="javascripts/chat.js")

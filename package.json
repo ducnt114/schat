@@ -9,6 +9,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "emojify.js": "^1.1.0",
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "jade-bootstrap": "^1.0.9",

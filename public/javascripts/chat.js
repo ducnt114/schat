@@ -48,9 +48,9 @@ function appendFriendMessage(content) {
     directChatName.setAttribute("class", "direct-chat-name pull-left");
     directChatName.innerHTML = "Nguyen Trung Duc";
 
-    var directChatTimestamp = document.createElement("span");
-    directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
-    directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
+    // var directChatTimestamp = document.createElement("span");
+    // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
+    // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
 
     var icon = document.createElement("img");
     icon.setAttribute("class", "direct-chat-img");
@@ -61,7 +61,7 @@ function appendFriendMessage(content) {
     directChatText.innerHTML = content;
 
     directChatInfo.appendChild(directChatName);
-    directChatInfo.appendChild(directChatTimestamp);
+    // directChatInfo.appendChild(directChatTimestamp);
 
     directChatMessage.appendChild(directChatInfo);
     directChatMessage.appendChild(icon);
@@ -83,9 +83,9 @@ function appendMyMessage(content) {
     directChatName.setAttribute("class", "direct-chat-name pull-right");
     directChatName.innerHTML = "Nguyen Trung Duc";
 
-    var directChatTimestamp = document.createElement("span");
-    directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-left");
-    directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
+    // var directChatTimestamp = document.createElement("span");
+    // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-left");
+    // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
 
     var icon = document.createElement("img");
     icon.setAttribute("class", "direct-chat-img");
@@ -96,7 +96,7 @@ function appendMyMessage(content) {
     directChatText.innerHTML = content;
 
     directChatInfo.appendChild(directChatName);
-    directChatInfo.appendChild(directChatTimestamp);
+    // directChatInfo.appendChild(directChatTimestamp);
 
     directChatMessage.appendChild(directChatInfo);
     directChatMessage.appendChild(icon);
@@ -106,3 +106,18 @@ function appendMyMessage(content) {
     messageBox.appendChild(directChatMessage);
     messageBox.scrollTop = messageBox.scrollHeight;
 }
+
+
+emojify.setConfig({
+    emojify_tag_type : 'div',           // Only run emojify.js on this element
+    only_crawl_id    : null,            // Use to restrict where emojify.js applies
+    img_dir          : 'images/emoji',  // Directory for emoji images
+    ignored_tags     : {                // Ignore the following tags
+        'SCRIPT'  : 1,
+        'TEXTAREA': 1,
+        'A'       : 1,
+        'PRE'     : 1,
+        'CODE'    : 1
+    }
+});
+emojify.run();
