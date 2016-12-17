@@ -1,0 +1,67 @@
+//
+   Created by ducnt114 on 12/11/16.
+
+extends layout
+
+block content
+
+    div(class="wrapper")
+        header(class="main-header")
+            a(href="#" class="logo")
+                span(class="logo-lg") Schat
+            nav(class="nav navbar-static-top")
+                div(class="navbar-custom-menu")
+                    ul(class="nav navbar-nav")
+                        li(class="user user-menu")
+                            a(href="#") Đăng nhập
+                        li(class="user user-menu")
+                            a(href="#") Quên mật khẩu
+        div(class="content-wrapper")
+            section(class="content")
+                div(class="container")
+                    div(class="row")
+                        div(class="col-md-8")
+                            div(class="box box-info")
+                                div(class="box-header with-border")
+                                    h3(class="box-title") Thông tin đăng kí
+                                form(class="form-horizontal")
+                                    div(class="box-body")
+                                        div(class="form-group")
+                                            label(class="col-sm-2 control-label") Số điện thoại
+                                            div(class="col-sm-10")
+                                                input(type="text" class="form-control" id="#1")
+                                        div(class="form-group")
+                                            label(class="col-sm-2 control-label") Họ đệm
+                                            div(class="col-sm-4")
+                                                input(type="text" class="form-control" id="#2")
+                                            label(class="col-sm-2 control-label") Tên
+                                            div(class="col-sm-4")
+                                                input(type="text" class="form-control" id="#3")
+                                        div(class="form-group")
+                                            label(class="col-sm-2 control-label") Email
+                                            div(class="col-sm-10")
+                                                input(type="email" class="form-control" id="#4")
+                                        div(class="form-group")
+                                            label(class="col-sm-2 control-label") Thành phố
+                                            div(class="col-sm-10")
+                                                input(type="text" class="form-control" id="#5")
+                                        div(class="form-group")
+                                            label(class="col-sm-2 control-label") Ngày/tháng/năm sinh
+                                            div(class="col-sm-4")
+                                                input(type="date" class="form-control" id="#6")
+                                            label(class="col-sm-2 control-label") Giới tính
+                                            div(class="col-sm-4")
+                                                select(class="form-control")
+                                                    option  Nam
+                                                    option  Nữ
+                                                    option  Nam-
+                                                    option  Nữ+
+                                        div(class="form-group")
+                                            div(class="col-sm-6 col-sm-offset-2")
+                                                div(class="checkbox")
+                                                    label
+                                                        input(type="checkbox")
+                                                        |&nbsp Tôi đồng ý với các điều khoản sử dụng trên website
+                                    div(class="box-footer")
+                                        div(class="col-sm-3 col-sm-offset-2")
+                                            button(type="submit" class="btn btn-primary btn-lg") Đăng kí

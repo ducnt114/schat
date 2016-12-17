@@ -1,0 +1,35 @@
+//
+   Created by ducnt114 on 12/11/16.
+
+extends layout
+
+block content
+
+    div(class="wrapper")
+        header(class="main-header")
+            a(href="#" class="logo")
+                span(class="logo-lg") Schat
+            nav(class="nav navbar-static-top")
+                div(class="navbar-custom-menu")
+                    ul(class="nav navbar-nav")
+                        li(class="user user-menu")
+                            a(href="#") Đăng nhập
+                        li(class="user user-menu")
+                            a(href="#") Đăng kí
+        div(class="content-wrapper")
+            section(class="content")
+                div(class="container")
+                    div(class="row")
+                        div(class="col-md-8")
+                            div(class="box box-info")
+                                div(class="box-header with-border")
+                                    h3(class="box-title") Quên mật khẩu
+                                form(class="form-horizontal")
+                                    div(class="box-body")
+                                        div(class="form-group")
+                                            label(class="col-sm-3 control-label") Email
+                                            div(class="col-sm-9")
+                                                input(type="text" class="form-control" id="#1")
+                                    div(class="box-footer")
+                                        div(class="col-sm-3 col-sm-offset-3")
+                                            button(type="submit" class="btn btn-primary btn-lg") Gửi
