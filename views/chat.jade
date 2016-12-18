@@ -1,93 +1,30 @@
-extends layout
+div(class="row")
+  div(class="col-md-8")
+    .box.box-primary.direct-chat.direct-chat-primary
+      .box-header.with-border
+        h3.box-title Người lạ 1
+        .box-tools.pull-right
+          button(class="btn btn-box-tool") Report
+          button(class="btn btn-box-tool") Kết thúc trò chuyện
+      .box-body#boxbody
+        .direct-chat-messages#messagebox
+          .direct-chat-msg
+            .direct-chat-info.clearfix
+              span(class="direct-chat-name pull-left") Người lạ 1
+              //span(class="direct-chat-timestamp pull-right") 23 Jan 2:00 pm
+            img(class="direct-chat-img" src="/images/favicon.ico")
+            .direct-chat-text Xin chao, toi la Duc :*
+          .direct-chat-msg.right
+            .direct-chat-info.clearfix
+              span.direct-chat-name.pull-right Nguyen Trung Duc
+              //span.direct-chat-timestamp.pull-left 23 Jan 2:00 pm
+            img(class="direct-chat-img" src="/images/favicon.ico")
+            .direct-chat-text Xin chao, toi la Duc :)
 
-block content
+      .box-footer
+        .input-group
+          input(type="text" name="message" placeholder="Type message..." class="form-control" id="msgContent" onkeypress="onInputKeyPress(event)")
+          span(class="input-group-btn")
+            a(class="btn btn-primary btn-flat" href="#" onclick="sendMessage()") Send
 
-    div(class="wrapper")
-        header(class="main-header")
-            a(href="#" class="logo")
-                span(class="logo-lg") Schat
-            nav(class="nav navbar-static-top")
-                div(class="navbar-custom-menu")
-                    ul(class="nav navbar-nav")
-                        li(class="user user-menu")
-                            a(href="#") Đăng xuất
-
-        aside(class="main-sidebar")
-            section(class="sidebar")
-                ul(class="sidebar-menu")
-                    li(class="header") Lựa chọn
-                    li(class="active treeview")
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Chủ đề
-                            span(class="pull-right-container")
-                                i(class="fa fa-angle-left pull-right")
-                        ul(class="treeview-menu")
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Chat mới
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Văn hóa
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Xã hội
-                    li(class="treeview")
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Chat
-                            span(class="pull-right-container")
-                                i(class="fa fa-angle-left pull-right")
-                        ul(class="treeview-menu")
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Chat mới
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Người lạ 1
-                    li
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Tìm bạn
-                    li
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Bạn tìm
-                    li
-                        a(href="/confession")
-                            i(class="fa fa-dashboard") &nbsp Confession
-
-
-        div(class="content-wrapper")
-            section(class="content")
-                div(class="container")
-                    div(class="row")
-                        div(class="col-md-8")
-                            .box.box-primary.direct-chat.direct-chat-primary
-                                .box-header.with-border
-                                    h3.box-title Người lạ 1
-                                    .box-tools.pull-right
-                                        button(class="btn btn-box-tool") Report
-                                        button(class="btn btn-box-tool") Kết thúc trò chuyện
-                                .box-body#boxbody
-                                    .direct-chat-messages#messagebox
-                                        .direct-chat-msg
-                                            .direct-chat-info.clearfix
-                                                span(class="direct-chat-name pull-left") Người lạ 1
-                                                //span(class="direct-chat-timestamp pull-right") 23 Jan 2:00 pm
-                                            img(class="direct-chat-img" src="/images/favicon.ico")
-                                            .direct-chat-text Xin chao, toi la Duc :*
-                                        .direct-chat-msg.right
-                                            .direct-chat-info.clearfix
-                                                span.direct-chat-name.pull-right Nguyen Trung Duc
-                                                //span.direct-chat-timestamp.pull-left 23 Jan 2:00 pm
-                                            img(class="direct-chat-img" src="/images/favicon.ico")
-                                            .direct-chat-text Xin chao, toi la Duc :)
-
-                                .box-footer
-                                    .input-group
-                                        input(type="text" name="message" placeholder="Type message..." class="form-control" id="msgContent" onkeypress="onInputKeyPress(event)")
-                                        span(class="input-group-btn")
-                                            a(class="btn btn-primary btn-flat" href="#" onclick="sendMessage()") Send
-
-
-block append scripts
-    script(src="//cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js")
-    script(src="/socket.io/socket.io.js")
-    script(src="javascripts/chat.js")
+script(src="/javascripts/chat.js")

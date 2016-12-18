@@ -1,0 +1,33 @@
+.row
+  .col-md-8
+    .box.box-info
+      .box-header.with-border
+        h3.box-title Bạn tìm người
+        .box-tools.pull-right
+          a(class='btn btn-box-tool' href='#' onlick='getConfessionPage()') Viết confession
+      form.form-horizontal
+        .box-body
+          .form-group
+            label.col-sm-3.control-label Lần chat cuối
+            .col-sm-9
+              .input-group.date
+                .input-group-addon
+                  i.fa.fa-calendar
+                input(type='text' class='form-control pull-right' id='datepicker')
+          .form-group
+            label.col-sm-3.control-label Tên (nếu bạn nhớ)
+            .col-sm-9
+              input(type='text' class='form-control')
+          .form-group
+            label.col-sm-3.control-label Địa điểm
+            .col-sm-9
+              input(type='text' class='form-control')
+          .form-group
+            label.col-sm-3.control-label Lời nhắn
+            .col-sm-9
+              textarea(rows='5' class='form-control')
+        .box-footer
+          .col-sm-3.col-sm-offset-3
+            a(class='btn btn-primary' href='#' onclick='createOutgoingFindFriend()') Tạo yêu cầu
+
+script(src='/javascripts/outgoing-find-friend.js')

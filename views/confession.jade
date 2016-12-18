@@ -1,100 +1,42 @@
-//
-   Created by ducnt114 on 12/12/16.
+.row
+  section.content-header
+    .row
+      .col-md-1
+        h3 Confession
+      .col-md-2.col-md-offset-6
+        a(href="#")
+          h3 Tạo
+  section.content
+    .container
+      .row
+        .col-md-8
+          ul.timeline
+            li.time-label
+              span.bg-red 10 Feb. 2014
+            li
+              i.fa.fa-envelope.bg-blue
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o
+                  | 12:05
+                h3.timeline-header
+                  a(href="#") Support Team
+                .timeline-body Content goes here
+                .timeline-footer
+                  a.btn.btn-primary.btn-xs Xem them
+            li
+              i.fa.fa-envelope.bg-blue
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o
+                  | 12:05
+                h3.timeline-header
+                  a(href="#") Support Team
+                .timeline-body Content goes here
+                .timeline-footer
+                  a.btn.btn-primary.btn-xs Xem them
+      .row
+        .col-md-2.col-md-offset-3
+          a.btn.btn-primary Tai them
 
-extends layout
-
-block content
-
-    div(class="wrapper")
-        header(class="main-header")
-            a(href="#" class="logo")
-                span(class="logo-lg") Schat
-            nav(class="nav navbar-static-top")
-                div(class="navbar-custom-menu")
-                    ul(class="nav navbar-nav")
-                        li(class="user user-menu")
-                            a(href="#") Đăng xuất
-
-        aside(class="main-sidebar")
-            section(class="sidebar")
-                ul(class="sidebar-menu")
-                    li(class="header") Lựa chọn
-                    li(class="active treeview")
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Chủ đề
-                            span(class="pull-right-container")
-                                i(class="fa fa-angle-left pull-right")
-                        ul(class="treeview-menu")
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Chat mới
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Văn hóa
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Xã hội
-                    li(class="treeview")
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Chat
-                            span(class="pull-right-container")
-                                i(class="fa fa-angle-left pull-right")
-                        ul(class="treeview-menu")
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Chat mới
-                            li
-                                a(href="#")
-                                    i(class="fa fa-circle-o") &nbsp Người lạ 1
-                    li
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Tìm bạn
-                    li
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Bạn tìm
-                    li
-                        a(href="#")
-                            i(class="fa fa-dashboard") &nbsp Confession
-
-
-        .content-wrapper
-            section.content-header
-                .row
-                    .col-md-1
-                        h3 Confession
-                    .col-md-2.col-md-offset-6
-                        a(href="#")
-                            h3 Tạo
-            section.content
-                .container
-                    .row
-                        .col-md-8
-                            ul.timeline
-                                li.time-label
-                                    span.bg-red 10 Feb. 2014
-                                li
-                                    i.fa.fa-envelope.bg-blue
-                                    .timeline-item
-                                        span.time
-                                            i.fa.fa-clock-o
-                                            |12:05
-                                        h3.timeline-header
-                                            a(href="#") Support Team
-                                        .timeline-body Content goes here
-                                        .timeline-footer
-                                            a.btn.btn-primary.btn-xs Xem them
-                                li
-                                    i.fa.fa-envelope.bg-blue
-                                    .timeline-item
-                                        span.time
-                                            i.fa.fa-clock-o
-                                            | 12:05
-                                        h3.timeline-header
-                                            a(href="#") Support Team
-                                        .timeline-body Content goes here
-                                        .timeline-footer
-                                            a.btn.btn-primary.btn-xs Xem them
-                    .row
-                        .col-md-2.col-md-offset-3
-                            a.btn.btn-primary Tai them
-
+script(src="/javascripts/confession.js")

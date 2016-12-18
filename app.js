@@ -16,7 +16,10 @@ var thankyouRoute = require('./routes/thankyou');
 var landingRoute = require('./routes/landing');
 var confessionRoute = require('./routes/confession');
 var newcfsRoute = require('./routes/newcfs');
+var newPairChatRoute = require('./routes/new-pair-chat');
 var newSubjectChatRoute = require('./routes/new-subject-chat');
+var outgoingFindFriendRoute = require('./routes/outgoing-find-friend');
+var incomingFindFriendRoute = require('./routes/incoming-find-friend');
 
 var
 app = express();
@@ -44,7 +47,10 @@ app.use('/thankyou', thankyouRoute);
 app.use('/landing', landingRoute);
 app.use('/confession', confessionRoute);
 app.use('/newcfs', newcfsRoute);
+app.use('/new-pair-chat', newPairChatRoute);
 app.use('/new-subject-chat', newSubjectChatRoute);
+app.use('/outgoing-find-friend', outgoingFindFriendRoute);
+app.use('/incoming-find-friend', incomingFindFriendRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
