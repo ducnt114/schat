@@ -1,37 +1,42 @@
 extends layout
 
+block append meta
+  meta(name="google-signin-client_id" content="613760341397-9ia3iqrb1im9e7nm5iui1eopncveje95.apps.googleusercontent.com")
+
 block append styles
-    link(rel="stylesheet",href="/stylesheets/login.css")
+  link(rel="stylesheet",href="/stylesheets/login.css")
 
 block content
 
-    nav.navbar.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                button(type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed")
-                    .sr-only Toggle navigation
-                    .icon-bar
-                    .icon-bar
-                    .icon-bar
-                a(href="#" class="navbar-brand") Schat
-            .collapse.navbar-collapse#navbar
-                ul.nav.navbar-nav.navbar-right
-                    li.active
-                        a(href="#trial") Dùng thử
-                    li
-                        a(href="#register") Đăng kí
-                    li
-                        a(href="#forgotpassword") Quên mật khẩu
-
+  nav.navbar.navbar-inverse.navbar-fixed-top
     .container
-        .row
-            .col-md-2.col-md-offset-5
-                .buttonarea
-                    a(class="btn btn-lg btn-primary", href='#', onclick='loginWithFacebook()') Đăng nhập với Facebook
+      .navbar-header
+        button(type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed")
+          .sr-only Toggle navigation
+          .icon-bar
+          .icon-bar
+          .icon-bar
+        a(href="#" class="navbar-brand") Schat
+      .collapse.navbar-collapse#navbar
+        ul.nav.navbar-nav.navbar-right
+          li.active
+            a(href="#trial") Dùng thử
+          li
+            a(href="#register") Đăng kí
+          li
+            a(href="#forgotpassword") Quên mật khẩu
 
-                    a(class="btn btn-lg btn-danger" href="#" onclick="") Đăng nhập với Google
-                    hr
-                    a(class="btn btn-lg btn-success" onclick="") Tôi đã có tài khoản
+  .container
+    .row
+      .col-md-2.col-md-offset-5
+        .buttonarea
+          a(class='btn btn-lg btn-primary' href='#' onclick='loginWithFacebook()') Đăng nhập với Facebook
+
+          //a(class='btn btn-lg btn-danger' href='#' onclick='loginWithGoogle()') Đăng nhập với Google
+          #ggSignInBtn
+          hr
+          a(class='btn btn-lg btn-success' onclick='') Tôi đã có tài khoản
 
 block append scripts
-    script(src="javascripts/login.js")
+  script(src="https://apis.google.com/js/platform.js?onload=renderGoogleButton" async defer)
+  script(src="javascripts/login.js")

@@ -58,3 +58,7 @@ function updateMainContent(data) {
   $('#mainContainer').empty();
   $('#mainContainer').html(data);
 }
+
+function logout(){
+  window.location = '/login';
+}
