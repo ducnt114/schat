@@ -4,9 +4,9 @@ block content
   h1= title
   p Welcome to #{title}
 
-  a(href='/loginwup') login with user pass
+  a(href='#' class='btn btn-primary' onclick='loadLoginWupPage()') login with user pass
   br
-  a(href='/register') register
+  a(href='#' class='btn btn-primary' onclick='loadRegisterPage()') register
 
 block append scripts
   script(src="/javascripts/index.js")

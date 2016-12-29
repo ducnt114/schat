@@ -1,84 +1,81 @@
-//
-   Created by ducnt114 on 12/11/16.
+div(class="wrapper")
+  header(class="main-header")
+    a(href="#" class="logo")
+      span(class="logo-lg") Schat
+    nav(class="nav navbar-static-top")
+      div(class="navbar-custom-menu")
+        ul(class="nav navbar-nav")
+          li(class="user user-menu")
+            a(href='#' onclick='logout()') Đăng xuất
 
-extends layout
-
-block content
-
-  div(class="wrapper")
-    header(class="main-header")
-      a(href="/landing" class="logo")
-        span(class="logo-lg") Schat
-      nav(class="nav navbar-static-top")
-        div(class="navbar-custom-menu")
-          ul(class="nav navbar-nav")
-            li(class="user user-menu")
-              a(href='#' onclick='logout()') Đăng xuất
-
-    aside(class="main-sidebar")
-      section(class="sidebar")
-        ul(class="sidebar-menu")
-          li(class="header") Lựa chọn
-          li(class="active treeview")
-            a(href="#")
-              i(class="fa fa-dashboard") &nbsp Chủ đề
-              span(class="pull-right-container")
-                i(class="fa fa-angle-left pull-right")
-            ul(class="treeview-menu")
+  aside(class="main-sidebar")
+    section(class="sidebar")
+      ul(class="sidebar-menu")
+        li(class="header") Lựa chọn
+        li(class="active treeview")
+          a(href="#")
+            i(class="fa fa-list")
+            | &nbsp Chủ đề
+            span(class="pull-right-container")
+              i(class="fa fa-angle-left pull-right")
+          ul(class="treeview-menu")
+            for category in categories
               li
-                a(href='#' onclick='getNewPairChatPage()')
-                  i.fa.fa-circle-o &nbsp Chat mới
-              for category in categories
-                li
-                  a(href='#' onclick='getNewSubjectChatPage(#{category.id}, "#{category.link}")')
-                    i(class="fa fa-circle-o") &nbsp #{category.title}
-          li(class="treeview")
-            a(href="#")
-              i(class="fa fa-dashboard") &nbsp Chat
-              span(class="pull-right-container")
-                i(class="fa fa-angle-left pull-right")
-            ul(class="treeview-menu")
-              li
-                a(href='#' onclick='getNewPairChatPage()')
-                  i(class="fa fa-circle-o") &nbsp Chat mới
-              li
-                a(href="#")
-                  i(class="fa fa-circle-o") &nbsp Người lạ 1
-          li
-            a(href='#' onclick='getIncomingFindFriendPage()')
-              i(class="fa fa-dashboard") &nbsp Tìm bạn
-          li
-            a(href='#' onclick='getOutgoingFindFriendPage()')
-              i(class="fa fa-dashboard") &nbsp Bạn tìm
-          li
-            a(href="#" onclick='getConfessionPage()')
-              i(class="fa fa-dashboard") &nbsp Confession
+                a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
+                  i(class="fa fa-dot-circle-o")
+                  | &nbsp #{category.title}
+        li(class="treeview")
+          a(href="#")
+            i(class="fa fa-wechat")
+            | &nbsp Chat
+            span(class="pull-right-container")
+              i(class="fa fa-angle-left pull-right")
+          ul(class="treeview-menu")
+            li
+              a(href='#' onclick='getNewPairChatPage()')
+                i(class="fa fa-user-plus")
+                | &nbsp Chat mới
+            li
+              a(href="#")
+                i(class="fa fa-user")
+                | &nbsp Người lạ 1
+        li
+          a(href='#' onclick='getIncomingFindFriendPage()')
+            i(class="fa fa-search")
+            | &nbsp Tìm bạn
+        li
+          a(href='#' onclick='getOutgoingFindFriendPage()')
+            i(class="fa fa-search")
+            | &nbsp Bạn tìm
+        li
+          a(href="#" onclick='getConfessionPage()')
+            i(class="fa fa-pencil-square-o")
+            | &nbsp Confession
 
 
-    .content-wrapper
-      section.content
-        .container#mainContainer
-          .row
-            .col-md-10
-              .box.box-primary
-                .box-header.with-border
-                  h3.box-title Chủ đề
-                .box-body
-                  - var i = 0
-                  - var boxColors = ['info-box bg-green', 'info-box bg-blue', 'info-box bg-aqua', 'info-box bg-red', 'info-box bg-yellow']
-                  for category in categories
-                    if i % 3 == 0
-                      .row
-                    a(href='#' onclick='getNewSubjectChatPage(#{category.id}, "#{category.link}")')
-                      .col-md-4.col-sm-6.col-xs-12
-                        div(class=boxColors[i%5])
-                          span.info-box-icon
-                            i.fa.fa-send-o
-                          .info-box-content
-                            span.info-box-text #{category.title}
-                            span.info-box-number #{category.user_online}
-                    - i++
-                div(class="box-footer")
+  .content-wrapper
+    section.content
+      .container#mainContainer
+        .row
+          .col-md-10
+            .box.box-primary
+              .box-header.with-border
+                h3.box-title Chủ đề
+              .box-body
+                - var i = 0
+                - var boxColors = ['info-box bg-green', 'info-box bg-blue', 'info-box bg-aqua', 'info-box bg-red', 'info-box bg-yellow']
+                for category in categories
+                  if i % 3 == 0
+                    .row
+                  a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
+                    .col-md-4.col-sm-6.col-xs-12
+                      div(class=boxColors[i % 5])
+                        span.info-box-icon
+                          i.fa.fa-send-o
+                        .info-box-content
+                          span.info-box-text #{category.title}
+                          span.info-box-number #{category.user_online}
+                  - i++
+              div(class="box-footer")
 
-block append scripts
-  script(src="/javascripts/landing.js")
+script(src="/javascripts/landing.js")

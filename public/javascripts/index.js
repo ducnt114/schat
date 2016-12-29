@@ -12,28 +12,62 @@ sock.onclose = function (e) {
 };
 sock.onmessage = function (msg) {
   console.log("message received: " + msg.data);
-  if (msg.data['type'] === 'subscribe' && msg.data['response']['code'] === 0) {
+  var message = JSON.parse(msg.data);
+  console.log('message data type: ' + message['type']);
+  if (message['type'] === 'subscribe' && message['response']['code'] === 0) {
     // send request subscribe success
     // wait for pair matching...
-  } else if (msg.data['type'] === 'subscribed_success' && msg.data['response']['code'] === 0) {
+  } else if (message['type'] === 'subscribed_success' && message['response']['code'] === 0) {
     // find a pair chat
-    var pairId = msg.data['data']['pair_id'];
-    var destUser = msg.data['data']['dest_user'];
+    var pairId = message['data']['pair_id'];
+    var destUser = message['data']['dest_user'];
 
     getChatPage(pairId, destUser);
-  } else if (msg.data['type'] === 'register' && msg.data['response']['code'] === 0) {
+  } else if (message['type'] === 'register' && message['response']['code'] === 0) {
     // register success
-    sessionStorage.token = msg.data['token'];
-    sessionStorage.name = msg.data['name'];
-    window.location = '/landing';
-  } else if (msg.data['type'] === 'subscribe' && msg.data['response']['code'] === 0) {
+    console.log('register success, redirect to landing page...');
+    sessionStorage.token = message['data']['token'];
+    sessionStorage.name = message['data']['name'];
+
+    $.get('/landing', function (data, status) {
+      $('body').html(data);
+    });
+
+  } else if (message['type'] === 'subscribe' && message['response']['code'] === 0) {
     // subscribe success
     // wait for pair matching...
-  } else if (msg.data['type'] === 'subscribed_success' && msg.data['response']['code'] === 0) {
+  } else if (message['type'] === 'subscribed_success' && message['response']['code'] === 0) {
     // found a pair chat
-    var pairId = msg.data['data']['pair_id'];
-    var destUser = msg.data['data']['dest_user'];
+    var pairId = message['data']['pair_id'];
+    var destUser = message['data']['dest_user'];
 
     getChatPage(pairId, destUser);
+  } else if (message['type'] === 'deliver_msg' && message['response']['code'] === 0) {
+    // receive delivered message
+    appendFriendMessage(message['data']['content']);
+  } else if (message['type'] === 'login' && message['response']['code'] === 0) {
+    // login success
+    sessionStorage.token = message['data']['token'];
+    sessionStorage.name = message['data']['name'];
+    sessionStorage.email = message['data']['email'];
+
+    $.get('/landing', function (data, status) {
+      $('body').html(data);
+    });
   }
 };
+
+/**
+ * When click register link on index page
+ */
+function loadRegisterPage() {
+  $.get('/register', function (data, status) {
+    $('body').html(data);
+  });
+}
+
+function loadLoginWupPage() {
+  $.get('/loginwup', function (data, status) {
+    $('body').html(data);
+  });
+}

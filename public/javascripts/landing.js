@@ -20,8 +20,8 @@ function getNewPairChatPage() {
  * When click on subject chat
  * @param subjectName
  */
-function getNewSubjectChatPage(subjectId, subjectName) {
-  var url = '/new-subject-chat/' + subjectName;
+function getNewSubjectChatPage(subjectId) {
+  var url = '/new-subject-chat';
   $.get(url, function (data, status) {
     updateMainContent(data);
     // setTimeout(getChatPage(), 50000);
@@ -39,31 +39,6 @@ function getNewSubjectChatPage(subjectId, subjectName) {
   console.log("subscribe request payload: " + payload);
 
   sock.send(payload);
-  // var sock = null;
-  // var wsuri = "ws://104.199.239.43:9000/chat";
-  // sock = new WebSocket(wsuri);
-  // sock.onopen = function () {
-  //   console.log("connected to " + wsuri);
-  //   sock.send(payload);
-  // };
-  // sock.onclose = function (e) {
-  //   console.log("connection closed (" + e.code + ")");
-  // };
-  // sock.onmessage = function (msg) {
-  //   console.log("message received: " + msg.data);
-  //   if (msg.data['type'] === 'subscribe' && msg.data['response']['code'] === 0) {
-  //     // send request subscribe success
-  //     // wait for pair matching...
-  //   }
-  //   if (msg.data['type'] === 'subscribed_success' && msg.data['response']['code'] === 0) {
-  //     // find a pair chat
-  //     var pairId = msg.data['data']['pair_id'];
-  //     var destUser = msg.data['data']['dest_user'];
-  //
-  //     getChatPage(pairId, destUser);
-  //   }
-  // };
-
 }
 
 function getChatPage(pairId, destUser) {

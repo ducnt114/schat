@@ -5,17 +5,6 @@
 // Update window location but not reload the page
 history.pushState({}, null, '/chat');
 
-// var socket = io.connect('http://localhost:3000', {
-//   'reconnection': true,
-//   'reconnectionDelay': 1000,
-//   'reconnectionDelayMax': 5000,
-//   'reconnectionAttempts': 5
-// });
-//
-// socket.on('chat message', function (msg) {
-//   appendFriendMessage(msg);
-// });
-
 function onInputKeyPress(key) {
   if (key.keyCode == 13) {
     if (isValidMessage()) {
@@ -34,9 +23,8 @@ function isValidMessage() {
 }
 
 function sendMessage() {
-  var messageContent = document.getElementById("msgContent");
-  appendMyMessage(messageContent.value);
-  // socket.emit('chat message', messageContent.value);
+  var messageContent = $("#msgContent").val();
+  appendMyMessage(messageContent);
   var data = {
     "type": "send_msg",
     "data": {
@@ -46,8 +34,9 @@ function sendMessage() {
     }
   };
   var payload = JSON.stringify(data);
+  console.log('chat message send:' + payload);
   sock.send(payload);
-  messageContent.value = "";
+  $("#msgContent").val("");
 }
 
 function appendFriendMessage(content) {
@@ -67,7 +56,7 @@ function appendFriendMessage(content) {
 
   var icon = document.createElement("img");
   icon.setAttribute("class", "direct-chat-img");
-  icon.setAttribute("src", "/images/favicon.ico");
+  icon.setAttribute("src", $('#friendAvatarUrlId').val());
 
   var directChatText = document.createElement("div");
   directChatText.setAttribute("class", "direct-chat-text");
@@ -104,7 +93,7 @@ function appendMyMessage(content) {
 
   var icon = document.createElement("img");
   icon.setAttribute("class", "direct-chat-img");
-  icon.setAttribute("src", "/images/favicon.ico");
+  icon.setAttribute("src", $('#selfAvatarUrlId').val());
 
   var directChatText = document.createElement("div");
   directChatText.setAttribute("class", "direct-chat-text");

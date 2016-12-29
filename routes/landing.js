@@ -4,69 +4,40 @@
 
 var express = require('express');
 var router = express.Router();
-var tokenChecker = require('../utils/token_checker');
+var WebSocket = require('ws');
 
 router.get('/', function (req, res, next) {
 
-  // var token = req.query.token;
-  // if(!tokenChecker.isValidToken(token)){
-  //   console.log('Token invalid, Unauthorized');
-  //   res.sendStatus(401);
-  // }
-
-  // load list of categories
-  var categories = [
-    {
-      "id": 0,
-      "title": "Văn hóa",
-      "link": "van_hoa",
-      "user_online": 123
-    },
-    {
-      "id": 1,
-      "title": "Xã hội",
-      "link": "xa_hoi",
-      "user_online": 456
-    },
-    {
-      "id": 2,
-      "title": "Tình yêu",
-      "link": "tinh_yeu",
-      "user_online": 123
-    },
-    {
-      "id": 3,
-      "title": "Xã hội",
-      "link": "xa_hoi",
-      "user_online": 456
-    },
-    {
-      "id": 4,
-      "title": "Văn hóa",
-      "link": "van_hoa",
-      "user_online": 123
-    },
-    {
-      "id": 5,
-      "title": "Xã hội",
-      "link": "xa_hoi",
-      "user_online": 456
-    },
-    {
-      "id": 6,
-      "title": "Văn hóa",
-      "link": "van_hoa",
-      "user_online": 123
-    },
-    {
-      "id": 7,
-      "title": "Xã hội",
-      "link": "xa_hoi",
-      "user_online": 456
+  var wsuri = "ws://104.199.239.43:9000/chat";
+  var sock = new WebSocket(wsuri);
+  sock.on('open', function open() {
+    console.log("connected to " + wsuri);
+    // load list of categories
+    var data = {
+      "type": "get_subject_list"
+    };
+    var payload = JSON.stringify(data);
+    sock.send(payload);
+  });
+  sock.on('message', function (msg, flags) {
+    console.log("message received: " + msg);
+    var message = JSON.parse(msg);
+    if (message['type'] === 'get_subject_list' && message['response']['code'] === 0) {
+      var categories = [];
+      for (var subject in message['data']) {
+        categories.push({
+          "id": 0,
+          "title": "Văn hóa",
+          "user_online": 123
+        })
+      }
+      res.render('landing', {title: 'Landing', categories: categories});
+      sock.close();
     }
-  ];
-
-  res.render('landing', {title: 'Landing', categories: categories});
+  });
+  sock.on('close', function () {
+    console.log('close websocket to api server.');
+  });
 });
 
 module.exports = router;

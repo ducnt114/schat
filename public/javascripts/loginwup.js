@@ -7,20 +7,24 @@ function loginwup() {
   var password = $('#idPassword').val();
 
   if((isValidEmail(email) || isValidPhoneNumber(email)) && isValidPassword(password)){
-    var url = '/loginwup';
     var data = {
-      'email': email,
-      'password': password
-    };
-    $.post(url, data, function(data, status){
-      if(data['code'] === 0){
-        // login success
-        sessionStorage.token = data['token'];
-        sessionStorage.name = data['name'];
-        sessionStorage.email = data['email'];
-        window.location = '/landing?token=' + data['token'];
+      "type": "login",
+      "data": {
+        "email": email,
+        "password": password
       }
-    });
+    }
+    var payload = JSON.stringify(data);
+    sock.send(payload);
+    // $.post(url, data, function(data, status){
+    //   if(data['code'] === 0){
+    //     // login success
+    //     sessionStorage.token = data['token'];
+    //     sessionStorage.name = data['name'];
+    //     sessionStorage.email = data['email'];
+    //     window.location = '/landing?token=' + data['token'];
+    //   }
+    // });
   }
 }
 

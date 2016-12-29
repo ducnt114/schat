@@ -1,42 +1,34 @@
-//
-   Created by ducnt114 on 12/10/16.
+.wrapper
+  header(class="main-header")
+    a(href="#" class="logo")
+      span(class="logo-lg") Schat
+    nav(class="nav navbar-static-top")
+      .navbar-custom-menu
+        ul(class="nav navbar-nav")
+          li(class="user user-menu")
+            a(href="/register") Đăng kí
+          li(class="user user-menu")
+            a(href="/forgotpwd") Quên mật khẩu
+  .content-wrapper
+    section(class="content")
+      .container
+        .row
+          .col-md-8
+            .box.box-info
+              .box-header.with-border
+                h3(class="box-title") Đăng nhập
+              form(class="form-horizontal")
+                .box-body
+                  .form-group
+                    label(class="col-sm-3 control-label") Email / Số điện thoại
+                    .col-sm-9
+                      input(type="text" class="form-control" id="idEmail")
+                  .form-group
+                    label(class="col-sm-3 control-label") Mật khẩu
+                    .col-sm-9
+                      input(type="password" class="form-control" id="idPassword")
+                .box-footer
+                  .col-sm-3.col-sm-offset-3
+                    a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
 
-extends layout
-
-block content
-
-  div(class="wrapper")
-    header(class="main-header")
-      a(href="#" class="logo")
-        span(class="logo-lg") Schat
-      nav(class="nav navbar-static-top")
-        div(class="navbar-custom-menu")
-          ul(class="nav navbar-nav")
-            li(class="user user-menu")
-              a(href="/register") Đăng kí
-            li(class="user user-menu")
-              a(href="/forgotpwd") Quên mật khẩu
-    div(class="content-wrapper")
-      section(class="content")
-        div(class="container")
-          div(class="row")
-            div(class="col-md-8")
-              div(class="box box-info")
-                div(class="box-header with-border")
-                  h3(class="box-title") Đăng nhập
-                form(class="form-horizontal")
-                  div(class="box-body")
-                    div(class="form-group")
-                      label(class="col-sm-3 control-label") Email / Số điện thoại
-                      div(class="col-sm-9")
-                        input(type="text" class="form-control" id="idEmail")
-                    div(class="form-group")
-                      label(class="col-sm-3 control-label") Mật khẩu
-                      div(class="col-sm-9")
-                        input(type="password" class="form-control" id="idPassword")
-                  div(class="box-footer")
-                    div(class="col-sm-3 col-sm-offset-3")
-                      a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
-
-block append scripts
-  script(src="/javascripts/loginwup.js")
+script(src="/javascripts/loginwup.js")

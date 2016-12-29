@@ -22,29 +22,22 @@ function register() {
       && isValidInputText(gender) && isValidPassword(password)) {
       var url = '/register';
       var data = {
-        'phoneNumber': phoneNumber,
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'city': city,
-        'birthday': birthDay,
-        'gender': gender,
-        'password': password
+        "type": "register",
+        "data": {
+          "phone": phoneNumber,
+          "password": password,
+          "first_name": firstName,
+          "last_name": lastName,
+          "email": email,
+          "city": city,
+          "dob": birthDay + "T00:00:00Z",
+          "gender": gender
+        }
       };
       var payload = JSON.stringify(data);
+      console.log('register payload: ' + payload);
       sock.send(payload);
 
-      // $.post(url, data, function (data, status) {
-      //   if (status === 'success') {
-      //     if (data['code'] === 0) {
-      //       sessionStorage.token = data['token'];
-      //       sessionStorage.name = data['name'];
-      //       window.location = '/landing?token=' + data['token'];
-      //     }
-      //     ;
-      //   }
-      // });
-      // return true;
     }
 
   } else {

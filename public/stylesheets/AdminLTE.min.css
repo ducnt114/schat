@@ -18,7 +18,7 @@ html, body {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     overflow-x: hidden;
     overflow-y: auto
@@ -138,7 +138,7 @@ body.hold-transition .content-wrapper, body.hold-transition .right-side, body.ho
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: 'Source Sans Pro', sans-serif
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
