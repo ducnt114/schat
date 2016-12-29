@@ -3,3 +3,10 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  a(href='/loginwup') login with user pass
+  br
+  a(href='/register') register
+
+block append scripts
+  script(src="/javascripts/index.js")

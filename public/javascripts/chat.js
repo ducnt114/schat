@@ -5,16 +5,16 @@
 // Update window location but not reload the page
 history.pushState({}, null, '/chat');
 
-var socket = io.connect('http://localhost:3000', {
-  'reconnection': true,
-  'reconnectionDelay': 1000,
-  'reconnectionDelayMax': 5000,
-  'reconnectionAttempts': 5
-});
-
-socket.on('chat message', function (msg) {
-  appendFriendMessage(msg);
-});
+// var socket = io.connect('http://localhost:3000', {
+//   'reconnection': true,
+//   'reconnectionDelay': 1000,
+//   'reconnectionDelayMax': 5000,
+//   'reconnectionAttempts': 5
+// });
+//
+// socket.on('chat message', function (msg) {
+//   appendFriendMessage(msg);
+// });
 
 function onInputKeyPress(key) {
   if (key.keyCode == 13) {
@@ -36,7 +36,17 @@ function isValidMessage() {
 function sendMessage() {
   var messageContent = document.getElementById("msgContent");
   appendMyMessage(messageContent.value);
-  socket.emit('chat message', messageContent.value);
+  // socket.emit('chat message', messageContent.value);
+  var data = {
+    "type": "send_msg",
+    "data": {
+      "pair_id": $('#pairId').val(),
+      "content": messageContent,
+      "token": sessionStorage.token
+    }
+  };
+  var payload = JSON.stringify(data);
+  sock.send(payload);
   messageContent.value = "";
 }
 

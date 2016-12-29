@@ -5,36 +5,38 @@ extends layout
 
 block content
 
-    div(class="wrapper")
-        header(class="main-header")
-            a(href="#" class="logo")
-                span(class="logo-lg") Schat
-            nav(class="nav navbar-static-top")
-                div(class="navbar-custom-menu")
-                    ul(class="nav navbar-nav")
-                        li(class="user user-menu")
-                            a(href="#") Đăng kí
-                        li(class="user user-menu")
-                            a(href="#") Quên mật khẩu
-        div(class="content-wrapper")
-            section(class="content")
-                div(class="container")
-                    div(class="row")
-                        div(class="col-md-8")
-                            div(class="box box-info")
-                                div(class="box-header with-border")
-                                    h3(class="box-title") Đăng nhập
-                                form(class="form-horizontal")
-                                    div(class="box-body")
-                                        div(class="form-group")
-                                            label(class="col-sm-3 control-label") Email / Số điện thoại
-                                            div(class="col-sm-9")
-                                                input(type="text" class="form-control" id="#1")
-                                        div(class="form-group")
-                                            label(class="col-sm-3 control-label") Mật khẩu
-                                            div(class="col-sm-9")
-                                                input(type="text" class="form-control" id="#2")
-                                    div(class="box-footer")
-                                        div(class="col-sm-3 col-sm-offset-3")
-                                            button(type="submit" class="btn btn-primary btn-lg") Đăng nhập
+  div(class="wrapper")
+    header(class="main-header")
+      a(href="#" class="logo")
+        span(class="logo-lg") Schat
+      nav(class="nav navbar-static-top")
+        div(class="navbar-custom-menu")
+          ul(class="nav navbar-nav")
+            li(class="user user-menu")
+              a(href="/register") Đăng kí
+            li(class="user user-menu")
+              a(href="/forgotpwd") Quên mật khẩu
+    div(class="content-wrapper")
+      section(class="content")
+        div(class="container")
+          div(class="row")
+            div(class="col-md-8")
+              div(class="box box-info")
+                div(class="box-header with-border")
+                  h3(class="box-title") Đăng nhập
+                form(class="form-horizontal")
+                  div(class="box-body")
+                    div(class="form-group")
+                      label(class="col-sm-3 control-label") Email / Số điện thoại
+                      div(class="col-sm-9")
+                        input(type="text" class="form-control" id="idEmail")
+                    div(class="form-group")
+                      label(class="col-sm-3 control-label") Mật khẩu
+                      div(class="col-sm-9")
+                        input(type="password" class="form-control" id="idPassword")
+                  div(class="box-footer")
+                    div(class="col-sm-3 col-sm-offset-3")
+                      a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
 
+block append scripts
+  script(src="/javascripts/loginwup.js")

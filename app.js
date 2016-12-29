@@ -21,8 +21,7 @@ var newSubjectChatRoute = require('./routes/new-subject-chat');
 var outgoingFindFriendRoute = require('./routes/outgoing-find-friend');
 var incomingFindFriendRoute = require('./routes/incoming-find-friend');
 
-var
-app = express();
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

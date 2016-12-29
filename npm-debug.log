@@ -21,7 +21,7 @@
 9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 10 verbose pkgid schat@1.0.0
 11 verbose cwd /home/ducnt114/workspace/schat
-12 error Linux 4.4.0-53-generic
+12 error Linux 4.4.0-57-generic
 13 error argv "/home/ducnt114/opts/node-v4.4.7-linux-x64/bin/node" "/home/ducnt114/opts/node-v4.4.7-linux-x64/bin/npm" "start"
 14 error node v4.4.7
 15 error npm  v2.15.8

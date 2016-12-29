@@ -1,8 +1,8 @@
-div(class="row")
-  div(class="col-md-8")
+.row
+  .col-md-8
     .box.box-primary.direct-chat.direct-chat-primary
       .box-header.with-border
-        h3.box-title Người lạ 1
+        h3.box-title #{destUser}
         .box-tools.pull-right
           button(class="btn btn-box-tool") Report
           button(class="btn btn-box-tool") Kết thúc trò chuyện
@@ -10,7 +10,7 @@ div(class="row")
         .direct-chat-messages#messagebox
           .direct-chat-msg
             .direct-chat-info.clearfix
-              span(class="direct-chat-name pull-left") Người lạ 1
+              span(class="direct-chat-name pull-left") #{destUser}
               //span(class="direct-chat-timestamp pull-right") 23 Jan 2:00 pm
             img(class="direct-chat-img" src="/images/favicon.ico")
             .direct-chat-text Xin chao, toi la Duc :*
@@ -24,6 +24,7 @@ div(class="row")
       .box-footer
         .input-group
           input(type="text" name="message" placeholder="Type message..." class="form-control" id="msgContent" onkeypress="onInputKeyPress(event)")
+          input(type="hidden" name="pairId" id="pairId" value="#{pairId}")
           span(class="input-group-btn")
             a(class="btn btn-primary btn-flat" href="#" onclick="sendMessage()") Send
 

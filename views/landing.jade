@@ -30,7 +30,7 @@ block content
                   i.fa.fa-circle-o &nbsp Chat mới
               for category in categories
                 li
-                  a(href='#' onclick='getNewSubjectChatPage("#{category.link}")')
+                  a(href='#' onclick='getNewSubjectChatPage(#{category.id}, "#{category.link}")')
                     i(class="fa fa-circle-o") &nbsp #{category.title}
           li(class="treeview")
             a(href="#")
@@ -69,7 +69,7 @@ block content
                   for category in categories
                     if i % 3 == 0
                       .row
-                    a(href='#' onclick='getNewSubjectChatPage("#{category.link}")')
+                    a(href='#' onclick='getNewSubjectChatPage(#{category.id}, "#{category.link}")')
                       .col-md-4.col-sm-6.col-xs-12
                         div(class=boxColors[i%5])
                           span.info-box-icon
