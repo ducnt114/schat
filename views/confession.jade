@@ -12,29 +12,19 @@
         .col-md-8
           ul.timeline
             li.time-label
-              span.bg-red 10 Feb. 2014
-            li
-              i.fa.fa-envelope.bg-blue
-              .timeline-item
-                span.time
-                  i.fa.fa-clock-o
-                  | 12:05
-                h3.timeline-header
-                  a(href="#") Support Team
-                .timeline-body Content goes here
-                .timeline-footer
-                  a.btn.btn-primary.btn-xs Xem them
-            li
-              i.fa.fa-envelope.bg-blue
-              .timeline-item
-                span.time
-                  i.fa.fa-clock-o
-                  | 12:05
-                h3.timeline-header
-                  a(href="#") Support Team
-                .timeline-body Content goes here
-                .timeline-footer
-                  a.btn.btn-primary.btn-xs Xem them
+              span.bg-red Dec 30 2016
+            for confession in confessions
+              li
+                i.fa.fa-envelope.bg-blue
+                .timeline-item
+                  span.time
+                    i.fa.fa-clock-o
+                    | 12:05
+                  h3.timeline-header
+                    a(href="#") #{confession.location}
+                  .timeline-body #{confession.content}
+                  .timeline-footer
+                    a.btn.btn-primary.btn-xs Xem them
       .row
         .col-md-2.col-md-offset-3
           a.btn.btn-primary Tai them

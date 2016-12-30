@@ -26,8 +26,8 @@ router.get('/', function (req, res, next) {
       var categories = [];
       for (var subject in message['data']) {
         categories.push({
-          "id": 0,
-          "title": "Văn hóa",
+          "id": message['data'][subject]['id'],
+          "title": message['data'][subject]['name'],
           "user_online": 123
         })
       }

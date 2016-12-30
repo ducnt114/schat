@@ -1,11 +1,4 @@
 /**
- * Created by ducnt114 on 12/18/16.
- */
-
-// Update window location but not reload the page
-history.pushState({}, null, '/landing');
-
-/**
  * When click new pair chat
  */
 function getNewPairChatPage() {
@@ -72,8 +65,9 @@ function getConfessionPage() {
 function updateMainContent(data) {
   $('#mainContainer').empty();
   $('#mainContainer').html(data);
+  $(window).trigger('resize');
 }
 
 function logout() {
-  window.location = '/login';
+  window.location = '/';
 }

@@ -1,12 +1,28 @@
 extends layout
 
 block content
+
+  .wrapper
+    header.main-header
+      a(href="#" class="logo")
+        span(class="logo-lg") Schat
+      nav(class="nav navbar-static-top")
+        div(class="navbar-custom-menu")
+          ul(class="nav navbar-nav")
+            li(class="user user-menu")
+              a(href='#' onclick='loadLoginPage()') Đăng nhập
+            li(class="user user-menu")
+              a(href='#' onclick='loadForgotPasswordPage()') Quên mật khẩu
+
   h1= title
   p Welcome to #{title}
 
   a(href='#' class='btn btn-primary' onclick='loadLoginWupPage()') login with user pass
   br
   a(href='#' class='btn btn-primary' onclick='loadRegisterPage()') register
+
+
+
 
 block append scripts
   script(src="/javascripts/index.js")

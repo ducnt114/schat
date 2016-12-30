@@ -30,7 +30,7 @@ function register() {
           "last_name": lastName,
           "email": email,
           "city": city,
-          "dob": birthDay + "T00:00:00Z",
+          "dob": new Date(birthDay).getMilliseconds(),
           "gender": gender
         }
       };
