@@ -31,8 +31,8 @@ router.get('/', function (req, res, next) {
           "user_online": 123
         })
       }
-      res.render('landing', {title: 'Landing', categories: categories});
       sock.close();
+      res.render('landing', {title: 'Landing', categories: categories});
     }
   });
   sock.on('close', function () {

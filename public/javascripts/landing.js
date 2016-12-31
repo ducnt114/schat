@@ -14,11 +14,7 @@ function getNewPairChatPage() {
  * @param subjectName
  */
 function getNewSubjectChatPage(subjectId) {
-  var url = '/new-subject-chat';
-  $.get(url, function (data, status) {
-    updateMainContent(data);
-    // setTimeout(getChatPage(), 50000);
-  });
+  $.get('/new-subject-chat', updateMainContent);
 
   var data = {
     "type": "subscribe",
@@ -35,37 +31,46 @@ function getNewSubjectChatPage(subjectId) {
 }
 
 function getChatPage(pairId, destUser) {
-  var url = '/chat?token=' + sessionStorage.token + '&pair_id=' + pairId + '&dest_user=' + destUser;
-  $.get(url, function (data, status) {
-    updateMainContent(data);
-  });
+  $.get('/chat', updateMainContent);
 }
 
 function getIncomingFindFriendPage() {
-  $.get('/incoming-find-friend', function (data, status) {
-    updateMainContent(data);
-  });
+  $.get('/incoming-find-friend', updateMainContent);
 }
 
 function getOutgoingFindFriendPage() {
-  $.get('/outgoing-find-friend', function (data, status) {
-    updateMainContent(data);
-  });
+  $.get('/outgoing-find-friend', updateMainContent);
 }
 
 /**
  * When click on #Confession menu
  */
 function getConfessionPage() {
-  $.get('/confession', function (data, status) {
-    updateMainContent(data);
-  });
+  $.get('/confession', updateMainContent);
 }
 
-function updateMainContent(data) {
+
+function loadNewConfessionPage() {
+  $.get('/newcfs', updateMainContent);
+}
+
+function updateMainContent(data, status) {
   $('#mainContainer').empty();
   $('#mainContainer').html(data);
   $(window).trigger('resize');
+}
+
+function submitNewConfession() {
+  var cfsContent = $('#newCfsContentId').val();
+  var data = {
+    "type": "create_cfs",
+    "data": {
+      "token": sessionStorage.token,
+      "content": cfsContent
+    }
+  };
+  var payload = JSON.stringify(data);
+  sock.send(payload);
 }
 
 function logout() {

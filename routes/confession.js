@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
+var WebSocket = require('ws');
 
 router.get('/', function (req, res, next) {
 
@@ -29,16 +30,13 @@ router.get('/', function (req, res, next) {
           "content": message['data'][subject]['content']
         })
       }
-      res.render('landing', {title: 'Landing', confessions: confessions});
       sock.close();
+      res.render('confession', {title: 'Landing', confessions: confessions});
     }
   });
   sock.on('close', function () {
     console.log('close websocket to api server.');
   });
-
-
-  res.render('confession', {title: 'Confession'});
 });
 
 module.exports = router;

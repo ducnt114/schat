@@ -1,28 +1,67 @@
-.wrapper
-  header(class="main-header")
-    a(href="#" class="logo")
-      span(class="logo-lg") Schat
-    nav(class="nav navbar-static-top")
-      .navbar-custom-menu
-        ul(class="nav navbar-nav")
-          li(class="user user-menu")
-            a(href='#' onclick='loadLoginPage()') Đăng nhập
-          li(class="user user-menu")
-            a(href='#' onclick='loadRegisterPage()') Đăng kí
-  .content-wrapper
-    section(class="content")
-      .container
-        .row
-          .col-md-8
-            .box.box-info
-              .box-header.with-border
-                h3(class="box-title") Quên mật khẩu
-              form(class="form-horizontal")
-                .box-body
-                  .form-group
-                    label(class="col-sm-3 control-label") Email
-                    .col-sm-9
-                      input(type="text" class="form-control" id="#1")
-                .box-footer
-                  .col-sm-3.col-sm-offset-3
-                    button(type="submit" class="btn btn-primary btn-lg") Gửi
+style.
+  body {
+    min-height: 2000px;
+    padding-top: 70px;
+    background-color: #e4dbff;
+  }
+
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      a(href='#' class='navbar-brand') Stranger Chat
+    div(id='navbar' class='navbar-collapse collapse')
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='#' onclick='loadLoginPage()') Đăng nhập
+        li
+          a(href='#' onclick='loadRegisterPage()') Đăng kí
+
+.container
+  .row
+    .col-md-8
+      .box.box-info
+        .box-header.with-border
+          h3(class="box-title") Quên mật khẩu
+        form(class="form-horizontal")
+          .box-body
+            .form-group
+              label(class="col-sm-3 control-label") Email
+              .col-sm-9
+                input(type="text" class="form-control" id="forgotPwdId")
+          .box-footer
+            .col-sm-3.col-sm-offset-3
+              a(href='#' class="btn btn-primary btn-lg" onclick='submitForgotPassword()') Gửi
+
+
+
+
+
+
+//.wrapper
+//  header(class="main-header")
+//    a(href="#" class="logo")
+//      span(class="logo-lg") Schat
+//    nav(class="nav navbar-static-top")
+//      .navbar-custom-menu
+//        ul(class="nav navbar-nav")
+//          li(class="user user-menu")
+//            a(href='#' onclick='loadLoginPage()') Đăng nhập
+//          li(class="user user-menu")
+//            a(href='#' onclick='loadRegisterPage()') Đăng kí
+//  .content-wrapper
+//    section(class="content")
+//      .container
+//        .row
+//          .col-md-8
+//            .box.box-info
+//              .box-header.with-border
+//                h3(class="box-title") Quên mật khẩu
+//              form(class="form-horizontal")
+//                .box-body
+//                  .form-group
+//                    label(class="col-sm-3 control-label") Email
+//                    .col-sm-9
+//                      input(type="text" class="form-control" id="#1")
+//                .box-footer
+//                  .col-sm-3.col-sm-offset-3
+//                    button(type="submit" class="btn btn-primary btn-lg") Gửi

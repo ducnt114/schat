@@ -1,38 +1,42 @@
+style.
+  body {
+    min-height: 2000px;
+    padding-top: 70px;
+    background-color: #e4dbff;
+  }
 
-.wrapper
-  header(class="main-header")
-    a(href="#" class="logo")
-      span(class="logo-lg") Schat
-    nav(class="nav navbar-static-top")
-      .navbar-custom-menu
-        ul(class="nav navbar-nav")
-          li(class="user user-menu")
-            a(href='#' onclick='loadRegisterPage()') Đăng kí
-          li(class="user user-menu")
-            a(href='#' onclick='loadForgotPasswordPage()') Quên mật khẩu
-  .content-wrapper
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      a(href='#' class='navbar-brand') Stranger Chat
+    div(id='navbar' class='navbar-collapse collapse')
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='#' onclick='loadRegisterPage()') Đăng kí
+        li
+          a(href='#' onclick='loadForgotPasswordPage()') Quên mật khẩu
 
-      .container
-        .row
-          .col-md-8
-            .box.box-info
-              .box-header.with-border
-                h3(class="box-title") Đăng nhập
-              form(class="form-horizontal")
-                .box-body
-                  .form-group
-                    label(class="col-sm-3 control-label") Email / Số điện thoại
-                    .col-sm-9
-                      input(type="text" class="form-control" id="idEmail")
-                  .form-group
-                    label(class="col-sm-3 control-label") Mật khẩu
-                    .col-sm-9
-                      input(type="password" class="form-control" id="idPassword")
-                .box-footer
-                  .col-sm-3.col-sm-offset-3
-                    a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
-                    a(class='btn btn-lg btn-primary' href='#' onclick='loginWithFacebook()') Đăng nhập với Facebook
-                    #ggSignInBtn
+.container
+  .row
+    .col-md-8
+      .box.box-info
+        .box-header.with-border
+          h3(class="box-title") Đăng nhập
+        form(class="form-horizontal")
+          .box-body
+            .form-group
+              label(class="col-sm-3 control-label") Email / Số điện thoại
+              .col-sm-9
+                input(type="text" class="form-control" id="idEmail")
+            .form-group
+              label(class="col-sm-3 control-label") Mật khẩu
+              .col-sm-9
+                input(type="password" class="form-control" id="idPassword")
+          .box-footer
+            .col-sm-3.col-sm-offset-3
+              a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
+              a(class='btn btn-lg btn-primary' href='#' onclick='loginWithFacebook()') Đăng nhập với Facebook
+              #ggSignInBtn
 
 script(src="https://apis.google.com/js/platform.js?onload=renderGoogleButton" async defer)
 script(src="javascripts/login.js")
