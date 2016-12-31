@@ -33,10 +33,15 @@ nav.navbar.navbar-default.navbar-fixed-top
               .col-sm-9
                 input(type="password" class="form-control" id="idPassword")
           .box-footer
-            .col-sm-3.col-sm-offset-3
-              a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
-              a(class='btn btn-lg btn-primary' href='#' onclick='loginWithFacebook()') Đăng nhập với Facebook
-              #ggSignInBtn
+            .row
+              .col-sm-3.col-sm-offset-3
+                a(href='#' class="btn btn-primary btn-lg" onclick='loginwup()') Đăng nhập
+            hr
+            .row
+              .col-sm-3.col-sm-offset-1
+                a(class='btn btn-lg btn-primary' href='#' onclick='loginWithFacebook()') Đăng nhập với Facebook
+              .col-sm-3.col-sm-offset-2
+                #ggSignInBtn
 
 script(src="https://apis.google.com/js/platform.js?onload=renderGoogleButton" async defer)
 script(src="javascripts/login.js")

@@ -16,7 +16,6 @@ sock.onclose = function (e) {
 sock.onmessage = function (msg) {
   console.log("message received: " + msg.data);
   var message = JSON.parse(msg.data);
-  console.log('message data type: ' + message['type']);
 
   if (message['response']['code'] === 0) {
     // success code
@@ -40,10 +39,6 @@ sock.onmessage = function (msg) {
         sessionStorage.name = message['data']['name'];
         $.get('/landing', applyBodyData);
         break;
-      case 'subscribe':
-        // subscribe success
-        // wait for pair matching...
-        break;
       case 'deliver_msg':
         // receive delivered message
         appendFriendMessage(message['data']['content']);
@@ -59,9 +54,13 @@ sock.onmessage = function (msg) {
         // create new confession success
         $.get('/landing', applyBodyData);
         break;
+      case 'get_incoming_ff_req':
+        // got data for incoming find friend request
+        updateIncomingFindFriendPage(message['data']);
+        break;
     }
   }
-}
+};
 
 /**
  * Call back function for apply data to body
@@ -90,9 +89,4 @@ function loadLoginWupPage() {
 
 function loadForgotPasswordPage() {
   $.get('/forgotpwd', applyBodyData);
-}
-
-function submitForgotPassword(){
-  var email = $('#forgotPwdId').val();
-
 }
