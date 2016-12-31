@@ -28,7 +28,7 @@ function sendMessage() {
   var data = {
     "type": "send_msg",
     "data": {
-      "pair_id": $('#pairId').val(),
+      "pair_id": sessionStorage.pairId,
       "content": messageContent,
       "token": sessionStorage.token
     }

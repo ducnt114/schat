@@ -29,7 +29,9 @@ sock.onmessage = function (msg) {
         // find a pair chat
         var pairId = message['data']['pair_id'];
         var destUser = message['data']['dest_user'];
-        getChatPage(pairId, destUser);
+        sessionStorage.pairId = pairId;
+        sessionStorage.destUser = destUser;
+        getChatPage();
         break;
       case 'register':
         // register success
@@ -41,12 +43,6 @@ sock.onmessage = function (msg) {
       case 'subscribe':
         // subscribe success
         // wait for pair matching...
-        break;
-      case 'subscribed_success':
-        // found a pair chat
-        var pairId = message['data']['pair_id'];
-        var destUser = message['data']['dest_user'];
-        getChatPage(pairId, destUser);
         break;
       case 'deliver_msg':
         // receive delivered message
