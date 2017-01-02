@@ -31,17 +31,17 @@ function getNewSubjectChatPage(subjectId) {
 }
 
 function getChatPage(pairId, destUser) {
-  // mapUserChatContent.set(activeChatUser, $('#allChatBox'));
-  // if (mapUserChatContent.has(destUser)) {
-  //   activeChatUser = destUser;
-  //   updateMainContent(mapUserChatContent.get(destUser), null);
-  // } else {
-  $.get('/chat', function (data, status) {
-    mapUserChatContent.set(destUser, data);
+  if (mapUserChatContent.has(destUser)) {
+    mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
     activeChatUser = destUser;
-    updateMainContent(data, status);
-  });
-  // }
+    updateMainContent(mapUserChatContent.get(destUser), null);
+  } else {
+    $.get('/chat', function (data, status) {
+      mapUserChatContent.set(destUser, data);
+      activeChatUser = destUser;
+      updateMainContent(data, status);
+    });
+  }
 }
 
 function getOutgoingFindFriendPage() {

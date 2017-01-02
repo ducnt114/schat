@@ -50,7 +50,14 @@ sock.onmessage = function (msg) {
         break;
       case 'deliver_msg':
         // receive delivered message
-        appendFriendMessage(message['data']['content']);
+        var pairId = message['data']['pair_id'];
+        var destUser = mapPairIdUser.get(pairId);
+        if (destUser === activeChatUser) {
+          appendFriendMessage(message['data']['content']);
+        } else {
+          // store message to deactive user chat box
+          storeFriendMessage(destUser, message['data']['content']);
+        }
         break;
       case 'login':
         // login success

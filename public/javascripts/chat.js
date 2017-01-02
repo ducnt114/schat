@@ -113,6 +113,40 @@ function appendMyMessage(content) {
   emojify.run();
 }
 
+function storeFriendMessage(destUser, data) {
+  var oldChatBox = mapUserChatContent.get(destUser);
+
+  var directChatMessage = document.createElement("div");
+  directChatMessage.setAttribute("class", "direct-chat-msg");
+
+  var directChatInfo = document.createElement("div");
+  directChatInfo.setAttribute("class", "direct-chat-info clearfix");
+
+  var directChatName = document.createElement("span");
+  directChatName.setAttribute("class", "direct-chat-name pull-left");
+  directChatName.innerHTML = destUser;
+
+  // var directChatTimestamp = document.createElement("span");
+  // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
+  // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
+
+  var icon = document.createElement("img");
+  icon.setAttribute("class", "direct-chat-img");
+  icon.setAttribute("src", oldChatBox.getElementById('friendAvatarUrlId').value);
+
+  var directChatText = document.createElement("div");
+  directChatText.setAttribute("class", "direct-chat-text");
+  directChatText.innerHTML = data;
+
+  directChatInfo.appendChild(directChatName);
+  // directChatInfo.appendChild(directChatTimestamp);
+
+  directChatMessage.appendChild(directChatInfo);
+  directChatMessage.appendChild(icon);
+  directChatMessage.appendChild(directChatText);
+
+  oldChatBox.getElementById(messagebox).appendChild(directChatMessage);
+}
 
 emojify.setConfig({
   emojify_tag_type: 'div',           // Only run emojify.js on this element
