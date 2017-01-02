@@ -14,6 +14,7 @@ router.get('/', function (req, res, next) {
 
     res.render('chat', {
       title: 'Chat',
+      destUser: destUser,
       selfUrl: randomAvatar(),
       friendUrl: randomAvatar()
     });

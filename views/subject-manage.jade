@@ -1,0 +1,28 @@
+.row
+  .col-xs-10
+    .box
+      .box-header
+        h3.box-title Danh sách chủ đề
+      .box-body
+        #example2_wrapper.dataTables_wrapper.form-inline.dt-bootstrap
+          .row
+            .col-sm-5
+            .col-sm-5
+          .row
+            .col-sm-10
+              table(id='example2' class='table table-bordered table-hover dataTable' role='grid' aria-describedby='example2_info')
+                thead
+                  tr(role='row')
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Name') Name
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Created date') Created date
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Joined count') Joined count
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Message count') Message count
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Current online') Current online
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Status') Status
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Menu') Menu
+                tbody#subjectManageId
+
+script(src='/javascripts/subject-manage.js')
+
+
+

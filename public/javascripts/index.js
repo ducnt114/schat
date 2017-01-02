@@ -2,6 +2,11 @@
  * Created by ducnt114 on 12/29/16.
  */
 
+var mapUserPairId = new Map();
+var mapPairIdUser = new Map();
+var mapUserChatContent = new Map();
+var activeChatUser = '';
+
 var wsuri = "ws://104.199.239.43:9000/chat";
 var sock = new WebSocket(wsuri);
 
@@ -30,7 +35,11 @@ sock.onmessage = function (msg) {
         var destUser = message['data']['dest_user'];
         sessionStorage.pairId = pairId;
         sessionStorage.destUser = destUser;
-        getChatPage();
+        mapUserPairId.set(destUser, pairId);
+        mapPairIdUser.set(pairId, destUser);
+        // append connected user to left-side menu
+        addNewUserChatMenu(destUser);
+        getChatPage(pairId, destUser);
         break;
       case 'register':
         // register success
@@ -48,7 +57,13 @@ sock.onmessage = function (msg) {
         sessionStorage.token = message['data']['token'];
         sessionStorage.name = message['data']['name'];
         sessionStorage.email = message['data']['email'];
-        $.get('/landing', applyBodyData);
+
+        var role = message['data']['role'];
+        if (role === 'admin') {
+          window.location = '/admin';
+        } else {
+          $.get('/landing', applyBodyData);
+        }
         break;
       case 'create_cfs':
         // create new confession success

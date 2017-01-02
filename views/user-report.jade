@@ -1,0 +1,27 @@
+.row
+  .col-xs-10
+    .box
+      .box-header
+        h3.box-title Danh sách người dùng bị report
+      .box-body
+        #example2_wrapper.dataTables_wrapper.form-inline.dt-bootstrap
+          .row
+            .col-sm-5
+            .col-sm-5
+          .row
+            .col-sm-10
+              table(id='example2' class='table table-bordered table-hover dataTable' role='grid' aria-describedby='example2_info')
+                thead
+                  tr(role='row')
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Username') Username
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Email') Email
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Chat pair') Chat pair
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Status') Status
+                    th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Menu') Menu
+                tbody#userReportId
+
+script(src='/javascripts/user-report.js')
+
+
+
+

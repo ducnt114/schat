@@ -20,6 +20,11 @@ var newSubjectChatRoute = require('./routes/new-subject-chat');
 var outgoingFindFriendRoute = require('./routes/outgoing-find-friend');
 var incomingFindFriendRoute = require('./routes/incoming-find-friend');
 
+var adminRoute = require('./routes/admin');
+var subjectManageRoute = require('./routes/subject-manage');
+var userManageRoute = require('./routes/user-manage');
+var userReportRoute = require('./routes/user-report');
+
 var app = express();
 
 // view engine setup
@@ -48,6 +53,11 @@ app.use('/new-pair-chat', newPairChatRoute);
 app.use('/new-subject-chat', newSubjectChatRoute);
 app.use('/outgoing-find-friend', outgoingFindFriendRoute);
 app.use('/incoming-find-friend', incomingFindFriendRoute);
+
+app.use('/admin', adminRoute);
+app.use('/subject-manage', subjectManageRoute);
+app.use('/user-manage', userManageRoute);
+app.use('/user-report', userReportRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

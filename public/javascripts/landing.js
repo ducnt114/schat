@@ -31,7 +31,17 @@ function getNewSubjectChatPage(subjectId) {
 }
 
 function getChatPage(pairId, destUser) {
-  $.get('/chat', updateMainContent);
+  // mapUserChatContent.set(activeChatUser, $('#allChatBox'));
+  // if (mapUserChatContent.has(destUser)) {
+  //   activeChatUser = destUser;
+  //   updateMainContent(mapUserChatContent.get(destUser), null);
+  // } else {
+  $.get('/chat', function (data, status) {
+    mapUserChatContent.set(destUser, data);
+    activeChatUser = destUser;
+    updateMainContent(data, status);
+  });
+  // }
 }
 
 function getOutgoingFindFriendPage() {
@@ -182,8 +192,26 @@ function updateIncomingFindFriendPage(data) {
 
     $('#mainContainer').append(row);
   }
-  // update main content
-  // updateMainContent();
-
   $(window).trigger('resize');
+}
+
+function addNewUserChatMenu(destUser) {
+  var listChat = document.getElementById('listChatUserId');
+
+  var li = document.createElement('li');
+
+  var a = document.createElement('a');
+  a.setAttribute('href', '#');
+  var pairId = mapUserPairId.get(destUser);
+  a.setAttribute('onclick', 'getChatPage("' + pairId + '", "' + destUser + '")');
+
+  var i = document.createElement('i');
+  i.setAttribute('class', 'fa fa-user')
+
+  a.appendChild(i);
+  a.appendChild(document.createTextNode(destUser));
+
+  li.appendChild(a);
+
+  listChat.appendChild(li);
 }

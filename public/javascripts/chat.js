@@ -3,7 +3,7 @@
  */
 
 // Update window location but not reload the page
-history.pushState({}, null, '/chat');
+// history.pushState({}, null, '/chat');
 
 function onInputKeyPress(key) {
   if (key.keyCode == 13) {
@@ -23,12 +23,12 @@ function isValidMessage() {
 }
 
 function sendMessage() {
-  var messageContent = $("#msgContent").val();
+  var messageContent = $('#msgContent').val();
   appendMyMessage(messageContent);
   var data = {
     "type": "send_msg",
     "data": {
-      "pair_id": sessionStorage.pairId,
+      "pair_id": mapUserPairId.get(activeChatUser),
       "content": messageContent,
       "token": sessionStorage.token
     }
@@ -48,7 +48,7 @@ function appendFriendMessage(content) {
 
   var directChatName = document.createElement("span");
   directChatName.setAttribute("class", "direct-chat-name pull-left");
-  directChatName.innerHTML = "Nguyen Trung Duc";
+  directChatName.innerHTML = activeChatUser;
 
   // var directChatTimestamp = document.createElement("span");
   // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
@@ -85,7 +85,7 @@ function appendMyMessage(content) {
 
   var directChatName = document.createElement("span");
   directChatName.setAttribute("class", "direct-chat-name pull-right");
-  directChatName.innerHTML = "Nguyen Trung Duc";
+  directChatName.innerHTML = sessionStorage.name;
 
   // var directChatTimestamp = document.createElement("span");
   // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-left");

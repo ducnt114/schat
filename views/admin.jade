@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .wrapper
+    header(class="main-header")
+      a(href="#" class="logo")
+        span(class="logo-lg") Schat
+      nav(class="nav navbar-static-top")
+        .navbar-custom-menu
+          ul(class="nav navbar-nav")
+            li(class="user user-menu")
+              a(href='#' onclick='logout()') Đăng xuất
+
+    aside(class="main-sidebar")
+      section(class="sidebar")
+        ul(class="sidebar-menu")
+          li(class="header") Lựa chọn
+          li(class="active treeview")
+            a(href="#")
+              i(class="fa fa-list")
+              | &nbsp Quản lý chủ đề
+              span(class="pull-right-container")
+                i(class="fa fa-angle-left pull-right")
+            ul(class="treeview-menu")
+              li
+                a(href='#' onclick='loadSubjectListPage()')
+                  i(class="fa fa-dot-circle-o")
+                  | &nbsp Danh sách
+          li(class="treeview")
+            a(href="#")
+              i(class="fa fa-wechat")
+              | &nbsp Quản lý người dùng
+              span(class="pull-right-container")
+                i(class="fa fa-angle-left pull-right")
+            ul(class="treeview-menu")
+              li
+                a(href='#' onclick='loadUserListPage()')
+                  i(class="fa fa-user-plus")
+                  | &nbsp Danh sách
+              li
+                a(href='#' onclick='loadUserReportPage()')
+                  i(class="fa fa-user")
+                  | &nbsp Report
+
+    .content-wrapper
+      section.content
+        .container#mainContainer
+
+block append scripts
+  script(src="/javascripts/admin.js")

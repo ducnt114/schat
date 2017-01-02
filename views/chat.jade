@@ -1,19 +1,20 @@
-.row
+.row#allChatBox
   .col-md-8
     .box.box-primary.direct-chat.direct-chat-primary
       .box-header.with-border
         h3.box-title #{destUser}
         .box-tools.pull-right
-          button(class="btn btn-box-tool") Report
-          button(class="btn btn-box-tool") Kết thúc trò chuyện
+          button(class='btn btn-box-tool') Report
+          button(class='btn btn-box-tool') Kết thúc trò chuyện
       .box-body#boxbody
         .direct-chat-messages#messagebox
       .box-footer
         .input-group
-          input(type="text" name="message" placeholder="Type message..." class="form-control" id="msgContent" onkeypress="onInputKeyPress(event)")
-          input(type="hidden" name="pairId" id="selfAvatarUrlId" value="#{selfUrl}")
-          input(type="hidden" name="pairId" id="friendAvatarUrlId" value="#{friendUrl}")
-          span(class="input-group-btn")
-            a(class="btn btn-primary btn-flat" href="#" onclick="sendMessage()") Send
+          input(type='text' name='message' placeholder='Type message...' class='form-control' id='msgContent' onkeypress='onInputKeyPress(event)')
+          input(type='hidden' name='pairId' id='destUserId' value='#{destUser}')
+          input(type='hidden' name='pairId' id='selfAvatarUrlId' value='#{selfUrl}')
+          input(type='hidden' name='pairId' id='friendAvatarUrlId' value='#{friendUrl}')
+          span(class='input-group-btn')
+            a(class='btn btn-primary btn-flat' href='#' onclick='sendMessage()') Send
 
-script(src="/javascripts/chat.js")
+script(src='/javascripts/chat.js')
