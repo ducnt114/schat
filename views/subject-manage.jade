@@ -21,6 +21,26 @@
                     th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Status') Status
                     th(class='sorting' tabindex='0' aria-controls='example2' rowspan='1' colspan='1' aria-label='Menu') Menu
                 tbody#subjectManageId
+          .row
+            div(class='modal fade' tabindex='-1' role='dialog' id="myModal")
+              div(class='modal-dialog' role='document')
+                .modal-content
+                  .modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                      span(aria-hidden="true") &times;
+                    h4.modal-title Edit subject
+                  .modal-body
+                    div(class="form-group")
+                      label(class="col-sm-5 control-label") Old subject name
+                      div(class="col-sm-5")
+                        input(type="text" class="form-control" id='oldSubjectNameId' disabled placeholder='old subject name')
+                    div(class="form-group")
+                      label(class="col-sm-5 control-label") New subject name
+                      div(class="col-sm-5")
+                        input(type="text" class="form-control" id="newSubjectNameId" name='newSubjectName')
+                  .modal-footer
+                    button(type="button" class="btn btn-default" data-dismiss="modal") Close
+                    button(type="button" class="btn btn-primary" onclick='updateSubject()') Save changes
 
 script(src='/javascripts/subject-manage.js')
 

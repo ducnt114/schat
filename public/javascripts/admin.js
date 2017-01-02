@@ -75,9 +75,12 @@ function updateSubjectListTable(data) {
     colStatus.appendChild(document.createTextNode(data[index]['status']));
 
     var colMenu = document.createElement('td');
-    var edit = document.createElement('a');
-    edit.setAttribute('href', '#');
-    edit.setAttribute('onclick', '');
+
+    var edit = document.createElement('button');
+    edit.setAttribute('type', 'button');
+    edit.setAttribute('class', 'btn btn-primary');
+    edit.setAttribute('data-toggle', 'modal');
+    edit.setAttribute('data-target', '#myModal');
     edit.appendChild(document.createTextNode('Edit'));
     colMenu.appendChild(edit);
 
