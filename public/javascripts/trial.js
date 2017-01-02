@@ -130,54 +130,56 @@ function addNewUserChatMenu(destUser) {
 
 function getChatPage(pairId, destUser) {
   if (mapUserChatContent.has(destUser)) {
-    mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
+    // mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
     activeChatUser = destUser;
     updateMainContent(mapUserChatContent.get(destUser), null);
   } else {
     $.get('/chat?dest_user=' + destUser, function (data, status) {
       mapUserChatContent.set(destUser, data);
+      console.log('ducnt');
+      console.log(mapUserChatContent);
       activeChatUser = destUser;
       updateMainContent(data, status);
     });
   }
 }
 
-function appendFriendMessage(content) {
-  var directChatMessage = document.createElement("div");
-  directChatMessage.setAttribute("class", "direct-chat-msg");
-
-  var directChatInfo = document.createElement("div");
-  directChatInfo.setAttribute("class", "direct-chat-info clearfix");
-
-  var directChatName = document.createElement("span");
-  directChatName.setAttribute("class", "direct-chat-name pull-left");
-  directChatName.innerHTML = activeChatUser;
-
-  // var directChatTimestamp = document.createElement("span");
-  // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
-  // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
-
-  var icon = document.createElement("img");
-  icon.setAttribute("class", "direct-chat-img");
-  icon.setAttribute("src", $('#friendAvatarUrlId').val());
-
-  var directChatText = document.createElement("div");
-  directChatText.setAttribute("class", "direct-chat-text");
-  directChatText.innerHTML = content;
-
-  directChatInfo.appendChild(directChatName);
-  // directChatInfo.appendChild(directChatTimestamp);
-
-  directChatMessage.appendChild(directChatInfo);
-  directChatMessage.appendChild(icon);
-  directChatMessage.appendChild(directChatText);
-
-  var messageBox = document.getElementById("messagebox");
-  messageBox.appendChild(directChatMessage);
-  messageBox.scrollTop = messageBox.scrollHeight;
-
-  emojify.run();
-}
+// function appendFriendMessage(content) {
+//   var directChatMessage = document.createElement("div");
+//   directChatMessage.setAttribute("class", "direct-chat-msg");
+//
+//   var directChatInfo = document.createElement("div");
+//   directChatInfo.setAttribute("class", "direct-chat-info clearfix");
+//
+//   var directChatName = document.createElement("span");
+//   directChatName.setAttribute("class", "direct-chat-name pull-left");
+//   directChatName.innerHTML = activeChatUser;
+//
+//   // var directChatTimestamp = document.createElement("span");
+//   // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
+//   // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
+//
+//   var icon = document.createElement("img");
+//   icon.setAttribute("class", "direct-chat-img");
+//   icon.setAttribute("src", $('#friendAvatarUrlId').val());
+//
+//   var directChatText = document.createElement("div");
+//   directChatText.setAttribute("class", "direct-chat-text");
+//   directChatText.innerHTML = content;
+//
+//   directChatInfo.appendChild(directChatName);
+//   // directChatInfo.appendChild(directChatTimestamp);
+//
+//   directChatMessage.appendChild(directChatInfo);
+//   directChatMessage.appendChild(icon);
+//   directChatMessage.appendChild(directChatText);
+//
+//   var messageBox = document.getElementById("messagebox");
+//   messageBox.appendChild(directChatMessage);
+//   messageBox.scrollTop = messageBox.scrollHeight;
+//
+//   emojify.run();
+// }
 
 function storeFriendMessage(destUser, data) {
   var oldChatBox = mapUserChatContent.get(destUser);
@@ -229,4 +231,9 @@ function loadRegisterPage() {
 
 function loadLoginPage() {
   $.get('/login', applyBodyData)
+}
+
+function applyBodyData(data, status) {
+  $('body').html(data);
+  $(window).trigger('resize');
 }

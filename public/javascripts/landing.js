@@ -32,7 +32,7 @@ function getNewSubjectChatPage(subjectId) {
 
 function getChatPage(pairId, destUser) {
   if (mapUserChatContent.has(destUser)) {
-    mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
+    // mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
     activeChatUser = destUser;
     updateMainContent(mapUserChatContent.get(destUser), null);
   } else {

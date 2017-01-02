@@ -74,6 +74,8 @@ function appendFriendMessage(content) {
   messageBox.scrollTop = messageBox.scrollHeight;
 
   emojify.run();
+
+  mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
 }
 
 function appendMyMessage(content) {
@@ -111,6 +113,8 @@ function appendMyMessage(content) {
   messageBox.scrollTop = messageBox.scrollHeight;
 
   emojify.run();
+
+  mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
 }
 
 function storeFriendMessage(destUser, data) {
