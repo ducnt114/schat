@@ -222,3 +222,11 @@ function getOutgoingFindFriendPage() {
 function getConfessionPage() {
   $.get('/confession', updateMainContent);
 }
+
+function loadRegisterPage() {
+  $.get('/register', applyBodyData);
+}
+
+function loadLoginPage() {
+  $.get('/login', applyBodyData)
+}
