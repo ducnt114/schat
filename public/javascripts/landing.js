@@ -36,7 +36,7 @@ function getChatPage(pairId, destUser) {
     activeChatUser = destUser;
     updateMainContent(mapUserChatContent.get(destUser), null);
   } else {
-    $.get('/chat', function (data, status) {
+    $.get('/chat?dest_user=' + destUser, function (data, status) {
       mapUserChatContent.set(destUser, data);
       activeChatUser = destUser;
       updateMainContent(data, status);

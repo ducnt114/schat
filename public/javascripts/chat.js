@@ -146,6 +146,7 @@ function storeFriendMessage(destUser, data) {
   directChatMessage.appendChild(directChatText);
 
   oldChatBox.getElementById(messagebox).appendChild(directChatMessage);
+  mapUserChatContent.set(destUser, oldChatBox);
 }
 
 emojify.setConfig({
