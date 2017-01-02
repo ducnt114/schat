@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .wrapper
+    header(class="main-header")
+      a(href="#" class="logo")
+        span(class="logo-lg") Schat
+      nav(class="nav navbar-static-top")
+        .navbar-custom-menu
+          ul(class="nav navbar-nav")
+            li(class="user user-menu")
+              a(href='#' onclick='') Đăng nhập
+            li(class="user user-menu")
+              a(href='#' onclick='') Đăng kí
+
+    aside(class="main-sidebar")
+      section(class="sidebar")
+        ul(class="sidebar-menu")
+          li(class="header") Lựa chọn
+          li(class="treeview active")
+            a(href="#")
+              i(class="fa fa-wechat")
+              | &nbsp Chat
+              span(class="pull-right-container")
+                i(class="fa fa-angle-left pull-right")
+            ul(class="treeview-menu" id='listChatUserId')
+              li
+                a(href='#' onclick='')
+                  i(class="fa fa-user-plus")
+                  | &nbsp Chat mới
+          li
+            a(href='#' onclick='getOutgoingFindFriendPage()')
+              i(class="fa fa-search")
+              | &nbsp Tìm bạn
+          li
+            a(href="#" onclick='getConfessionPage()')
+              i(class="fa fa-pencil-square-o")
+              | &nbsp Confession
+
+    .content-wrapper
+      section.content
+        .container#mainContainer
+
+
+block append scripts
+  script(src="/javascripts/trial.js")

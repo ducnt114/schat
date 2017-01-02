@@ -25,6 +25,8 @@ var subjectManageRoute = require('./routes/subject-manage');
 var userManageRoute = require('./routes/user-manage');
 var userReportRoute = require('./routes/user-report');
 
+var trialRoute = require('./routes/trial');
+
 var app = express();
 
 // view engine setup
@@ -58,6 +60,8 @@ app.use('/admin', adminRoute);
 app.use('/subject-manage', subjectManageRoute);
 app.use('/user-manage', userManageRoute);
 app.use('/user-report', userReportRoute);
+
+app.use('/trial', trialRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
