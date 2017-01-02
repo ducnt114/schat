@@ -3,8 +3,22 @@
  */
 
 function register() {
+  // remove all error if existed
+  $('#phoneNumberInput').attr('class', 'form-group');
+  $('#firstNameInput').attr('class', 'form-group');
+  $('#lastNameInput').attr('class', 'form-group');
+  $('#emailInput').attr('class', 'form-group');
+  $('#cityInput').attr('class', 'form-group');
+  $('#birthdayInput').attr('class', 'form-group');
+  $('#genderInput').attr('class', 'form-group');
+  $('#passwordInput').attr('class', 'form-group');
+
   var agree = $('#idAgree').is(':checked');
-  if (agree) {
+
+  if (!agree) {
+    $('#agreeCheck').attr('class', 'form-group has-error');
+    return false;
+  } else {
     // if agree with condition
     // get register form value, check valid data then submit
     var phoneNumber = $('#idPhoneNumber').val();
@@ -16,10 +30,48 @@ function register() {
     var gender = $('#idGender').val();
     var password = $('#idPassword').val();
 
-    if (isValidInputText(phoneNumber) && isValidInputText(firstName)
-      && isValidInputText(lastName) && isValidEmail(email)
-      && isValidInputText(city) && isValidDateString(birthDay)
-      && isValidInputText(gender) && isValidPassword(password)) {
+    var isValid = true;
+    if (!isValidPhoneNumber(phoneNumber)) {
+      $('#phoneNumberInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidInputText(firstName)) {
+      $('#firstNameInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidInputText(lastName)) {
+      $('#lastNameInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidEmail(email)) {
+      $('#emailInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidInputText(city)) {
+      $('#cityInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidDateString(birthDay)) {
+      $('#birthdayInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidInputText(gender)) {
+      $('#genderInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (!isValidPassword(password)) {
+      $('#passwordInput').attr('class', 'form-group has-error');
+      isValid = false;
+    }
+
+    if (isValid) {
       var url = '/register';
       var data = {
         "type": "register",
@@ -40,15 +92,14 @@ function register() {
 
     }
 
-  } else {
-    // if not agree, don't submit register form
-    return false;
   }
-
 }
 
-function isValidPhoneNumber(text) {
-  var len = value.match(/\d/g).length;
+function isValidPhoneNumber(phoneNumber) {
+  if (phoneNumber === '') {
+    return false;
+  }
+  var len = phoneNumber.match(/\d/g).length;
   return len === 10 || len === 11;
 }
 
@@ -74,6 +125,14 @@ function isValidEmail(email) {
 }
 
 function isValidDateString(dateString) {
-  return true;
+  if(dateString === ''){
+    return false;
+  }
+  try {
+    new Date(dateString).getMilliseconds();
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
 

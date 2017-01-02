@@ -18,39 +18,41 @@ nav.navbar.navbar-default.navbar-fixed-top
 
 .container
   .row
-    .col-md-8
+    .col-md-8.col-md-offset-2
       .box.box-info
-        div(class="box-header with-border")
-          h3(class="box-title") Thông tin đăng kí
-        form(class="form-horizontal")
-          div(class="box-body")
-            div(class="form-group")
+        .box-header.with-border
+          h3.box-title Thông tin đăng kí
+        form.form-horizontal
+          .box-body
+            .form-group#phoneNumberInput
               label(class="col-sm-2 control-label") Số điện thoại
               div(class="col-sm-10")
                 input(type="text" class="form-control" id="idPhoneNumber" name='phoneNumber')
-            div(class="form-group")
-              label(class="col-sm-2 control-label") Họ đệm
-              div(class="col-sm-4")
+            .form-group#firstNameInput
+              label.col-sm-2.control-label Họ đệm
+              .col-sm-10
                 input(type="text" class="form-control" id="idFirstName" name='firstName')
-              label(class="col-sm-2 control-label") Tên
-              div(class="col-sm-4")
+            .form-group#lastNameInput
+              label.col-sm-2.control-label Tên
+              .col-sm-10
                 input(type="text" class="form-control" id="idLastName" name='lastName')
-            div(class="form-group")
+            .form-group#emailInput
               label(class="col-sm-2 control-label") Email
               div(class="col-sm-10")
                 input(type="email" class="form-control" id="idEmail" name='email')
-            div(class="form-group")
+            .form-group#passwordInput
               label(class="col-sm-2 control-label") Mật khẩu
               div(class="col-sm-10")
                 input(type="password" class="form-control" id="idPassword" name='password')
-            div(class="form-group")
+            .form-group#cityInput
               label(class="col-sm-2 control-label") Thành phố
               div(class="col-sm-10")
                 input(type="text" class="form-control" id="idCity" name='city')
-            div(class="form-group")
+            .form-group#birthdayInput
               label(class="col-sm-2 control-label") Ngày sinh
               div(class="col-sm-4")
                 input(type="date" class="form-control" id="idBirthDay" name='birthday')
+            .form-group#genderInput
               label(class="col-sm-2 control-label") Giới tính
               div(class="col-sm-4")
                 select(class="form-control" id='idGender' name='gender')
@@ -58,7 +60,7 @@ nav.navbar.navbar-default.navbar-fixed-top
                   option(value='female')  Nữ
                   option(value='male-')  Nam-
                   option(value='female+') Nữ+
-            div(class="form-group")
+            .form-group#agreeCheck
               div(class="col-sm-6 col-sm-offset-2")
                 div(class="checkbox")
                   label
