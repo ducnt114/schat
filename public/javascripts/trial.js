@@ -36,6 +36,10 @@ sock.onmessage = function (msg) {
         // load free landing page
         loadFreeLandingPage();
         break;
+      case 'subscribe':
+        // subscribe success, render matching page
+        $.get('/new-chat-matching', updateMainContent);
+        break;
       case 'subscribed_success':
         // find a pair chat
         var pairId = message['data']['pair_id'];
@@ -87,24 +91,6 @@ function submitTry() {
   sock.send(payload);
 }
 
-function getFreeStyleChat() {
-  // subscribe free style chat
-  $.get('/new-subject-chat', updateMainContent);
-
-  var data = {
-    "type": "subscribe",
-    "data": {
-      "token": sessionStorage.token,
-      "subject_id": 0
-    }
-  };
-
-  var payload = JSON.stringify(data);
-  console.log("subscribe request payload: " + payload);
-
-  sock.send(payload);
-}
-
 function addNewUserChatMenu(destUser) {
   var listChat = document.getElementById('listChatUserId');
 
@@ -143,8 +129,6 @@ function getChatPage(destUser) {
 }
 
 function getNewPairChatPage() {
-  $.get('/new-pair-chat', updateMainContent);
-
   var data = {
     "type": "subscribe",
     "data": {

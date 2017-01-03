@@ -30,6 +30,7 @@ sock.onmessage = function (msg) {
       case 'subscribe':
         // send request subscribe success
         // wait for pair matching...
+        $.get('/new-chat-matching', updateMainContent);
         break;
       case 'subscribed_success':
         // find a pair chat

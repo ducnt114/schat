@@ -2,8 +2,6 @@
  * When click new pair chat
  */
 function getNewPairChatPage() {
-  $.get('/new-pair-chat', updateMainContent);
-
   var data = {
     "type": "subscribe",
     "data": {
@@ -23,8 +21,6 @@ function getNewPairChatPage() {
  * @param subjectName
  */
 function getNewSubjectChatPage(subjectId) {
-  $.get('/new-subject-chat', updateMainContent);
-
   var data = {
     "type": "subscribe",
     "data": {
