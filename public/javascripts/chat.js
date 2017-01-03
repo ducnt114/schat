@@ -136,7 +136,7 @@ function storeFriendMessage(destUser, data) {
 
   var icon = document.createElement("img");
   icon.setAttribute("class", "direct-chat-img");
-  icon.setAttribute("src", oldChatBox.getElementById('friendAvatarUrlId').value);
+  icon.setAttribute("src", oldChatBox.querySelector('#friendAvatarUrlId').value);
 
   var directChatText = document.createElement("div");
   directChatText.setAttribute("class", "direct-chat-text");
@@ -149,7 +149,7 @@ function storeFriendMessage(destUser, data) {
   directChatMessage.appendChild(icon);
   directChatMessage.appendChild(directChatText);
 
-  oldChatBox.getElementById(messagebox).appendChild(directChatMessage);
+  oldChatBox.querySelector('#messagebox').appendChild(directChatMessage);
   mapUserChatContent.set(destUser, oldChatBox);
 }
 

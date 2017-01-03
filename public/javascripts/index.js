@@ -8,7 +8,7 @@ var mapUserChatContent = new Map();
 var activeChatUser = '';
 
 var wsuri = "ws://104.199.239.43:9000/chat";
-var sock = new WebSocket(wsuri);
+var sock = new ReconnectingWebSocket(wsuri, null, {debug: true, reconnectInterval: 3000});
 
 sock.onopen = function () {
   console.log("connected to " + wsuri);
