@@ -2,10 +2,20 @@
  * When click new pair chat
  */
 function getNewPairChatPage() {
-  $.get('/new-pair-chat', function (data, status) {
-    updateMainContent(data);
+  $.get('/new-pair-chat', updateMainContent);
 
-  });
+  var data = {
+    "type": "subscribe",
+    "data": {
+      "token": sessionStorage.token,
+      "subject_id": 0
+    }
+  };
+
+  var payload = JSON.stringify(data);
+  console.log("subscribe request payload: " + payload);
+
+  sock.send(payload);
 }
 
 /**
