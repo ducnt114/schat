@@ -142,77 +142,21 @@ function getChatPage(destUser) {
   }
 }
 
-// function appendFriendMessage(content) {
-//   var directChatMessage = document.createElement("div");
-//   directChatMessage.setAttribute("class", "direct-chat-msg");
-//
-//   var directChatInfo = document.createElement("div");
-//   directChatInfo.setAttribute("class", "direct-chat-info clearfix");
-//
-//   var directChatName = document.createElement("span");
-//   directChatName.setAttribute("class", "direct-chat-name pull-left");
-//   directChatName.innerHTML = activeChatUser;
-//
-//   // var directChatTimestamp = document.createElement("span");
-//   // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
-//   // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
-//
-//   var icon = document.createElement("img");
-//   icon.setAttribute("class", "direct-chat-img");
-//   icon.setAttribute("src", $('#friendAvatarUrlId').val());
-//
-//   var directChatText = document.createElement("div");
-//   directChatText.setAttribute("class", "direct-chat-text");
-//   directChatText.innerHTML = content;
-//
-//   directChatInfo.appendChild(directChatName);
-//   // directChatInfo.appendChild(directChatTimestamp);
-//
-//   directChatMessage.appendChild(directChatInfo);
-//   directChatMessage.appendChild(icon);
-//   directChatMessage.appendChild(directChatText);
-//
-//   var messageBox = document.getElementById("messagebox");
-//   messageBox.appendChild(directChatMessage);
-//   messageBox.scrollTop = messageBox.scrollHeight;
-//
-//   emojify.run();
-// }
+function getNewPairChatPage() {
+  $.get('/new-pair-chat', updateMainContent);
 
-function storeFriendMessage(destUser, data) {
-  var oldChatBox = mapUserChatContent.get(destUser);
+  var data = {
+    "type": "subscribe",
+    "data": {
+      "token": sessionStorage.token,
+      "subject_id": 0
+    }
+  };
 
-  var directChatMessage = document.createElement("div");
-  directChatMessage.setAttribute("class", "direct-chat-msg");
+  var payload = JSON.stringify(data);
+  console.log("subscribe request payload: " + payload);
 
-  var directChatInfo = document.createElement("div");
-  directChatInfo.setAttribute("class", "direct-chat-info clearfix");
-
-  var directChatName = document.createElement("span");
-  directChatName.setAttribute("class", "direct-chat-name pull-left");
-  directChatName.innerHTML = destUser;
-
-  // var directChatTimestamp = document.createElement("span");
-  // directChatTimestamp.setAttribute("class", "direct-chat-timestamp pull-right");
-  // directChatTimestamp.innerHTML = "23 Jan 2:00 pm";
-
-  var icon = document.createElement("img");
-  icon.setAttribute("class", "direct-chat-img");
-  icon.setAttribute("src", oldChatBox.getElementById('friendAvatarUrlId').value);
-
-  var directChatText = document.createElement("div");
-  directChatText.setAttribute("class", "direct-chat-text");
-  directChatText.innerHTML = data;
-
-  directChatInfo.appendChild(directChatName);
-  // directChatInfo.appendChild(directChatTimestamp);
-
-  directChatMessage.appendChild(directChatInfo);
-  directChatMessage.appendChild(icon);
-  directChatMessage.appendChild(directChatText);
-
-  oldChatBox.getElementById(messagebox).appendChild(directChatMessage);
-  mapUserChatContent.set(destUser, oldChatBox);
+  sock.send(payload);
 }
 
 function getOutgoingFindFriendPage() {

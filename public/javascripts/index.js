@@ -23,6 +23,7 @@ sock.onmessage = function (msg) {
   console.log("message received: " + msg.data);
   var message = JSON.parse(msg.data);
 
+  // success status
   if (message['response']['code'] === 0) {
     // success code
     switch (message['type']) {
@@ -89,6 +90,15 @@ sock.onmessage = function (msg) {
         updateIncomingFindFriendPage(message['data']);
         break;
     }
+  }
+
+  // error status
+  switch (message['type']) {
+    case 'subscribe':
+      if(message['response']['code'] === 17){
+        alert(message['response']['message']);
+      }
+      break;
   }
 };
 
