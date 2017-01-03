@@ -5,7 +5,6 @@ function getNewPairChatPage() {
   $.get('/new-pair-chat', function (data, status) {
     updateMainContent(data);
 
-    setTimeout(getChatPage(), 50000);
   });
 }
 
@@ -30,9 +29,18 @@ function getNewSubjectChatPage(subjectId) {
   sock.send(payload);
 }
 
-function getChatPage(pairId, destUser) {
+function getChatPage(destUserOrSubject) {
+  var destUser;
+  // check if param is user or subject
+  if(mapUserPairId.has(destUserOrSubject)){
+    // is User
+    destUser = destUserOrSubject;
+  } else {
+    // is Subject
+    destUser = mapSubjectUser.get(destUserOrSubject);
+  }
+
   if (mapUserChatContent.has(destUser)) {
-    // mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
     activeChatUser = destUser;
     updateMainContent(mapUserChatContent.get(destUser), null);
   } else {
@@ -202,14 +210,33 @@ function addNewUserChatMenu(destUser) {
 
   var a = document.createElement('a');
   a.setAttribute('href', '#');
-  var pairId = mapUserPairId.get(destUser);
-  a.setAttribute('onclick', 'getChatPage("' + pairId + '", "' + destUser + '")');
+  a.setAttribute('onclick', 'getChatPage("' + destUser + '")');
 
   var i = document.createElement('i');
-  i.setAttribute('class', 'fa fa-user')
+  i.setAttribute('class', 'fa fa-user');
 
   a.appendChild(i);
   a.appendChild(document.createTextNode(destUser));
+
+  li.appendChild(a);
+
+  listChat.appendChild(li);
+}
+
+function addNewSubjectChatMenu(subjectName){
+  var listChat = document.getElementById('listSubjectChatId');
+
+  var li = document.createElement('li');
+
+  var a = document.createElement('a');
+  a.setAttribute('href', '#');
+  a.setAttribute('onclick', 'getChatPage("' + subjectName + '")');
+
+  var i = document.createElement('i');
+  i.setAttribute('class', 'fa fa-user');
+
+  a.appendChild(i);
+  a.appendChild(document.createTextNode(subjectName));
 
   li.appendChild(a);
 

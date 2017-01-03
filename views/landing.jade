@@ -13,17 +13,12 @@ div(class="wrapper")
       ul(class="sidebar-menu")
         li(class="header") Lựa chọn
         li(class="active treeview")
-          a(href="#")
+          a(href='#' onclick='loadLandingContentPage()')
             i(class="fa fa-list")
             | &nbsp Chủ đề
             span(class="pull-right-container")
               i(class="fa fa-angle-left pull-right")
-          ul(class="treeview-menu")
-            for category in categories
-              li
-                a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
-                  i(class="fa fa-dot-circle-o")
-                  | &nbsp #{category.title}
+          ul.treeview-menu#listSubjectChatId
         li(class="active treeview")
           a(href="#")
             i(class="fa fa-wechat")

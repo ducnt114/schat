@@ -1,0 +1,21 @@
+.row
+  .col-md-10
+    .box.box-primary
+      .box-header.with-border
+        h3.box-title Chủ đề
+      .box-body
+        - var i = 0
+        - var boxColors = ['info-box bg-green', 'info-box bg-blue', 'info-box bg-aqua', 'info-box bg-red', 'info-box bg-yellow']
+        for category in categories
+          if i % 3 == 0
+            .row
+          a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
+            .col-md-4.col-sm-6.col-xs-12
+              div(class=boxColors[i % 5])
+                span.info-box-icon
+                  i.fa.fa-send-o
+                .info-box-content
+                  span.info-box-text #{category.title}
+                  span.info-box-number #{category.user_online}
+          - i++
+      div(class="box-footer")

@@ -40,13 +40,11 @@ sock.onmessage = function (msg) {
         // find a pair chat
         var pairId = message['data']['pair_id'];
         var destUser = message['data']['dest_user'];
-        sessionStorage.pairId = pairId;
-        sessionStorage.destUser = destUser;
         mapUserPairId.set(destUser, pairId);
         mapPairIdUser.set(pairId, destUser);
         // append connected user to left-side menu
         addNewUserChatMenu(destUser);
-        getChatPage(pairId, destUser);
+        getChatPage(destUser);
         break;
       case 'deliver_msg':
         // receive delivered message
@@ -115,10 +113,10 @@ function addNewUserChatMenu(destUser) {
   var a = document.createElement('a');
   a.setAttribute('href', '#');
   var pairId = mapUserPairId.get(destUser);
-  a.setAttribute('onclick', 'getChatPage("' + pairId + '", "' + destUser + '")');
+  a.setAttribute('onclick', 'getChatPage("' + destUser + '")');
 
   var i = document.createElement('i');
-  i.setAttribute('class', 'fa fa-user')
+  i.setAttribute('class', 'fa fa-user');
 
   a.appendChild(i);
   a.appendChild(document.createTextNode(destUser));
@@ -128,7 +126,7 @@ function addNewUserChatMenu(destUser) {
   listChat.appendChild(li);
 }
 
-function getChatPage(pairId, destUser) {
+function getChatPage(destUser) {
   if (mapUserChatContent.has(destUser)) {
     // mapUserChatContent.set(activeChatUser, document.getElementById('allChatBox'));
     activeChatUser = destUser;

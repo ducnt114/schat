@@ -5,6 +5,7 @@
 var mapUserPairId = new Map();
 var mapPairIdUser = new Map();
 var mapUserChatContent = new Map();
+var mapSubjectUser = new Map();
 var activeChatUser = '';
 
 var wsuri = "ws://104.199.239.43:9000/chat";
@@ -33,13 +34,20 @@ sock.onmessage = function (msg) {
         // find a pair chat
         var pairId = message['data']['pair_id'];
         var destUser = message['data']['dest_user'];
-        sessionStorage.pairId = pairId;
-        sessionStorage.destUser = destUser;
+        var subjectId = message['data']['subject_id'];
+        var subjectName = message['data']['subject_name'];
         mapUserPairId.set(destUser, pairId);
         mapPairIdUser.set(pairId, destUser);
         // append connected user to left-side menu
-        addNewUserChatMenu(destUser);
-        getChatPage(pairId, destUser);
+        if(subjectId === 0){
+          // free-style chat
+          addNewUserChatMenu(destUser);
+        } else {
+          // subject chat
+          mapSubjectUser.set(subjectName, destUser);
+          addNewSubjectChatMenu(subjectName);
+        }
+        getChatPage(destUser);
         break;
       case 'register':
         // register success
@@ -111,4 +119,8 @@ function loadLoginWupPage() {
 
 function loadForgotPasswordPage() {
   $.get('/forgotpwd', applyBodyData);
+}
+
+function loadLandingContentPage() {
+  $.get('/landing/content', updateMainContent);
 }
