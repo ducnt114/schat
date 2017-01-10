@@ -22,17 +22,22 @@ sock.onclose = function (e) {
 sock.onmessage = function (msg) {
   console.log("message received: " + msg.data);
   var message = JSON.parse(msg.data);
+  var responseType = message['type'];
+  var responseCode = message['response']['code'];
 
-  // success status
-  if (message['response']['code'] === 0) {
-    // success code
-    switch (message['type']) {
-      case 'subscribe':
+  // success code
+  switch (responseType) {
+    case 'subscribe':
+      if(responseCode === 0){
         // send request subscribe success
         // wait for pair matching...
         $.get('/new-chat-matching', updateMainContent);
-        break;
-      case 'subscribed_success':
+      } else if(responseCode === 17){
+        alert(message['response']['message']);
+      }
+      break;
+    case 'subscribed_success':
+      if(responseCode === 0){
         // find a pair chat
         var pairId = message['data']['pair_id'];
         var destUser = message['data']['dest_user'];
@@ -50,15 +55,19 @@ sock.onmessage = function (msg) {
           addNewSubjectChatMenu(subjectName);
         }
         getChatPage(destUser);
-        break;
-      case 'register':
+      }
+      break;
+    case 'register':
+      if(responseCode === 0){
         // register success
         console.log('register success, redirect to landing page...');
         sessionStorage.token = message['data']['token'];
         sessionStorage.name = message['data']['name'];
         $.get('/landing', applyBodyData);
-        break;
-      case 'deliver_msg':
+      }
+      break;
+    case 'deliver_msg':
+      if(responseCode === 0){
         // receive delivered message
         var pairId = message['data']['pair_id'];
         var destUser = mapPairIdUser.get(pairId);
@@ -68,8 +77,10 @@ sock.onmessage = function (msg) {
           // store message to deactive user chat box
           storeFriendMessage(destUser, message['data']['content']);
         }
-        break;
-      case 'login':
+      }
+      break;
+    case 'login':
+      if(responseCode === 0){
         // login success
         sessionStorage.token = message['data']['token'];
         sessionStorage.name = message['data']['name'];
@@ -81,23 +92,36 @@ sock.onmessage = function (msg) {
         } else {
           $.get('/landing', applyBodyData);
         }
-        break;
-      case 'create_cfs':
+      } else if(responseCode === 9){
+        // User not found
+        $('#loginerror').empty();
+        var loginError = document.getElementById('loginerror');
+        var alertBox = document.createElement('div');
+        alertBox.setAttribute('class', 'alert alert-warning alert-dismissible');
+        var closeButton = document.createElement('button');
+        closeButton.setAttribute('type', 'button');
+        closeButton.setAttribute('class', 'close');
+        closeButton.setAttribute('data-dismiss', 'alert');
+        closeButton.setAttribute('aria-hidden', 'true');
+        closeButton.appendChild(document.createTextNode('x'));
+        alertBox.appendChild(closeButton);
+        var i = document.createElement('i');
+        i.setAttribute('class', 'icon fa fa-warning');
+        alertBox.appendChild(i);
+        alertBox.appendChild(document.createTextNode(' ' + message['response']['message']));
+        loginError.appendChild(alertBox);
+      }
+      break;
+    case 'create_cfs':
+      if(responseCode === 0){
         // create new confession success
         $.get('/landing', applyBodyData);
-        break;
-      case 'get_incoming_ff_req':
+      }
+      break;
+    case 'get_incoming_ff_req':
+      if(responseCode === 0){
         // got data for incoming find friend request
         updateIncomingFindFriendPage(message['data']);
-        break;
-    }
-  }
-
-  // error status
-  switch (message['type']) {
-    case 'subscribe':
-      if(message['response']['code'] === 17){
-        alert(message['response']['message']);
       }
       break;
   }

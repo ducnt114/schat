@@ -113,7 +113,41 @@ function loginwup() {
   var email = $('#idEmail').val();
   var password = $('#idPassword').val();
 
-  if((isValidEmail(email) || isValidPhoneNumber(email)) && isValidPassword(password)){
+  // clear all error if existed
+  $('#loginerror').empty();
+  $('#loginEmailInput').attr('class', 'form-group');
+  $('#loginPasswordInput').attr('class', 'form-group');
+
+  var isValid = true;
+
+  if(!isValidEmail(email) && !isValidPhoneNumber(email)){
+    isValid = false;
+    $('#loginEmailInput').attr('class', 'form-group has-error');
+  }
+  if(!isValidPassword(password)){
+    isValid = false;
+    $('#loginPasswordInput').attr('class', 'form-group has-error');
+  }
+
+  if(!isValid){
+    var loginError = document.getElementById('loginerror');
+    var alertBox = document.createElement('div');
+    alertBox.setAttribute('class', 'alert alert-danger alert-dismissible');
+    var closeButton = document.createElement('button');
+    closeButton.setAttribute('type', 'button');
+    closeButton.setAttribute('class', 'close');
+    closeButton.setAttribute('data-dismiss', 'alert');
+    closeButton.setAttribute('aria-hidden', 'true');
+    closeButton.appendChild(document.createTextNode('x'));
+    alertBox.appendChild(closeButton);
+    var i = document.createElement('i');
+    i.setAttribute('class', 'icon fa fa-warning');
+    alertBox.appendChild(i);
+    alertBox.appendChild(document.createTextNode(' Email hoặc mật khẩu không hợp lệ!'));
+    loginError.appendChild(alertBox);
+  }
+
+  if(isValid){
     var data = {
       "type": "login",
       "data": {
@@ -126,9 +160,13 @@ function loginwup() {
   }
 }
 
-function isValidPhoneNumber(text) {
-  var len = value.match(/\d/g).length;
-  return len === 10 || len === 11;
+function isValidPhoneNumber(phoneNumber) {
+  if (phoneNumber == null || phoneNumber === ''){
+    return false;
+  }
+  var isNumber = phoneNumber.match(/\d/g);
+  var len = phoneNumber.length;
+  return isNumber && (len === 10 || len === 11);
 }
 
 function isValidPassword(pwd) {
