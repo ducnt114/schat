@@ -11,9 +11,10 @@
       .box-footer
         .input-group
           input(type='text' name='message' placeholder='Type message...' class='form-control' id='msgContent' onkeypress='onInputKeyPress(event)')
-          input(type='hidden' name='pairId' id='destUserId' value='#{destUser}')
-          input(type='hidden' name='pairId' id='selfAvatarUrlId' value='#{selfUrl}')
-          input(type='hidden' name='pairId' id='friendAvatarUrlId' value='#{friendUrl}')
+          input(type='hidden' name='destUserId' id='destUserId' value='#{destUser}')
+          input(type='hidden' name='selfAvatarUrlId' id='selfAvatarUrlId' value='#{selfUrl}')
+          input(type='hidden' name='friendAvatarUrlId' id='friendAvatarUrlId' value='#{friendUrl}')
+          input(type='hidden' name='finalChatId' id='finalChatId' value='-1')
           span(class='input-group-btn')
             a(class='btn btn-primary btn-flat' href='#' onclick='sendMessage()') Send
 

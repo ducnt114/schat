@@ -65,9 +65,16 @@ function appendFriendMessage(content) {
   directChatInfo.appendChild(directChatName);
   // directChatInfo.appendChild(directChatTimestamp);
 
-  directChatMessage.appendChild(directChatInfo);
-  directChatMessage.appendChild(icon);
+  // 0 for myself, 1 for friend, -1 for empty
+  var finalFlagElement = document.getElementById('allChatBox').querySelector('#finalChatId');
+
+  if(finalFlagElement.value != '1'){
+    directChatMessage.appendChild(directChatInfo);
+    // directChatMessage.appendChild(icon);
+  }
   directChatMessage.appendChild(directChatText);
+
+  finalFlagElement.value = '1';
 
   var messageBox = document.getElementById("messagebox");
   messageBox.appendChild(directChatMessage);
@@ -104,9 +111,16 @@ function appendMyMessage(content) {
   directChatInfo.appendChild(directChatName);
   // directChatInfo.appendChild(directChatTimestamp);
 
-  directChatMessage.appendChild(directChatInfo);
-  directChatMessage.appendChild(icon);
+  // 0 for myself, 1 for friend, -1 for empty
+  var finalFlagElement = document.getElementById('allChatBox').querySelector('#finalChatId');
+
+  if(finalFlagElement.value != '0'){
+    directChatMessage.appendChild(directChatInfo);
+    // directChatMessage.appendChild(icon);
+  }
   directChatMessage.appendChild(directChatText);
+
+  finalFlagElement.value = '0';
 
   var messageBox = document.getElementById("messagebox");
   messageBox.appendChild(directChatMessage);
@@ -145,9 +159,16 @@ function storeFriendMessage(destUser, data) {
   directChatInfo.appendChild(directChatName);
   // directChatInfo.appendChild(directChatTimestamp);
 
-  directChatMessage.appendChild(directChatInfo);
-  directChatMessage.appendChild(icon);
+  // 0 for myself, 1 for friend, -1 for empty
+  var finalFlagElement = oldChatBox.querySelector('#finalChatId');
+
+  if(finalFlagElement.value != '1'){
+    directChatMessage.appendChild(directChatInfo);
+    // directChatMessage.appendChild(icon);
+  }
   directChatMessage.appendChild(directChatText);
+
+  finalFlagElement.value = '1';
 
   oldChatBox.querySelector('#messagebox').appendChild(directChatMessage);
   mapUserChatContent.set(destUser, oldChatBox);

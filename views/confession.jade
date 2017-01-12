@@ -8,25 +8,27 @@
           h3 Tạo
   section.content
     .container
-      .row
-        .col-md-8
-          ul.timeline
-            li.time-label
-              span.bg-red Dec 30 2016
-            for confession in confessions
-              li
-                i.fa.fa-envelope.bg-blue
-                .timeline-item
-                  span.time
-                    i.fa.fa-clock-o
-                    | 12:05
-                  h3.timeline-header
-                    a(href="#") #{confession.location}
-                  .timeline-body #{confession.content}
-                  .timeline-footer
-                    a.btn.btn-primary.btn-xs Xem them
-      .row
-        .col-md-2.col-md-offset-3
-          a.btn.btn-primary Tai them
+      .col-md-8
+        .box.box-solid
+          .box-header.with-border
+            h3.box-title Confession
+            a(href='#' onclick='loadNewConfessionPage()' class='pull-right') Tạo
+          .box-body
+            .box-group
+              for confession in confessions
+                .row
+                  .col-xs-2
+                    span
+                      b #{confession.location}
+                    br
+                    span #{confession.timestamp}
+                  .col-xs-6.col-xs-offset-2
+                    .panel.box.box-primary
+                      .box-body
+                        p #{confession.content}
+          .box-footer
+            .row
+              .col-md-2.col-md-offset-3
+                a.btn.btn-primary Tai them
 
 script(src="/javascripts/confession.js")

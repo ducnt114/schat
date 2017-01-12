@@ -27,11 +27,12 @@ router.get('/', function (req, res, next) {
       for (var subject in message['data']) {
         confessions.push({
           "location": message['data'][subject]['location'],
-          "content": message['data'][subject]['content']
+          "content": message['data'][subject]['content'],
+          "timestamp": new Date().toISOString().substring(0, 10)
         })
       }
       sock.close();
-      res.render('confession', {title: 'Landing', confessions: confessions});
+      res.render('confession', {title: 'Confession', confessions: confessions});
     }
   });
   sock.on('close', function () {
