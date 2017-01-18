@@ -205,8 +205,13 @@ function leaveChat() {
   var payload = JSON.stringify(data);
   sock.send(payload);
 
-  // Load landing content
-  $.get('/landing/content', updateMainContent);
+  var isTrial = sessionStorage.trial;
+  if (isTrial === '1') {
+    loadTrialContentPage();
+  } else {
+    // Load landing content
+    $.get('/landing/content', updateMainContent);
+  }
 }
 
 emojify.setConfig({

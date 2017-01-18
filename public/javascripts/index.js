@@ -13,6 +13,12 @@ var sock = new ReconnectingWebSocket(wsuri, null, {debug: true, reconnectInterva
 
 sock.onopen = function () {
   console.log("connected to " + wsuri);
+  // if current page is trial then get trial content
+  var location = window.location;
+  if (location.pathname === '/trial') {
+    sessionStorage.trial = 1;
+    loadTrialContentPage();
+  }
 };
 
 sock.onclose = function (e) {
@@ -25,7 +31,6 @@ sock.onmessage = function (msg) {
   var responseType = message['type'];
   var responseCode = message['response']['code'];
 
-  // success code
   switch (responseType) {
     case 'subscribe':
       if (responseCode === 0) {
@@ -64,6 +69,7 @@ sock.onmessage = function (msg) {
         sessionStorage.token = message['data']['token'];
         sessionStorage.name = message['data']['name'];
         $.get('/landing', applyBodyData);
+        sessionStorage.trial = 0;
       }
       break;
     case 'deliver_msg':
@@ -85,12 +91,14 @@ sock.onmessage = function (msg) {
         sessionStorage.token = message['data']['token'];
         sessionStorage.name = message['data']['name'];
         sessionStorage.email = message['data']['email'];
+        sessionStorage.trial = 0;
 
         var role = message['data']['role'];
         if (role === 'admin') {
           window.location = '/admin';
         } else {
           $.get('/landing', applyBodyData);
+          history.pushState({}, null, '/index.html');
         }
       } else if (responseCode === 9) {
         // User not found
@@ -146,6 +154,19 @@ sock.onmessage = function (msg) {
         }
       }
       break;
+    case 'try':
+      if (responseCode === 0) {
+        // submit try success
+        var token = message['data']['token'];
+        var name = message['data']['name'];
+        var email = message['data']['email'];
+        sessionStorage.token = token;
+        sessionStorage.name = name;
+        sessionStorage.email = email;
+        // load free landing page
+        loadFreeLandingPage();
+      }
+      break;
   }
 };
 
@@ -180,4 +201,271 @@ function loadForgotPasswordPage() {
 
 function loadLandingContentPage() {
   $.get('/landing/content', updateMainContent);
+}
+
+function loadTrialContentPage() {
+  $.get('/trial/content', updateMainContent);
+}
+
+function loadFreeLandingPage() {
+  $.get('/trial/landing', updateMainContent);
+}
+
+function submitTry() {
+  var data = {
+    "type": "try",
+    "data": {
+      "gender": $('#idGender').val()
+    }
+  };
+
+  var payload = JSON.stringify(data);
+  sock.send(payload);
+}
+
+function getNewPairChatPage() {
+  var data = {
+    "type": "subscribe",
+    "data": {
+      "token": sessionStorage.token,
+      "subject_id": 0
+    }
+  };
+
+  var payload = JSON.stringify(data);
+  console.log("subscribe request payload: " + payload);
+
+  sock.send(payload);
+}
+
+function getChatPage(destUserOrSubject) {
+  var destUser;
+  // check if param is user or subject
+  if (mapUserPairId.has(destUserOrSubject)) {
+    // is User
+    destUser = destUserOrSubject;
+  } else {
+    // is Subject
+    destUser = mapSubjectUser.get(destUserOrSubject);
+  }
+
+  if (mapUserChatContent.has(destUser)) {
+    activeChatUser = destUser;
+    updateMainContent(mapUserChatContent.get(destUser), null);
+  } else {
+    $.get('/chat?dest_user=' + destUser, function (data, status) {
+      mapUserChatContent.set(destUser, data);
+      activeChatUser = destUser;
+      updateMainContent(data, status);
+    });
+  }
+}
+
+function addNewUserChatMenu(destUser) {
+  var listChat = document.getElementById('listChatUserId');
+  var pairId = mapUserPairId.get(destUser);
+
+  var li = document.createElement('li');
+  li.setAttribute('id', pairId);
+
+  var a = document.createElement('a');
+  a.setAttribute('href', '#');
+  a.setAttribute('onclick', 'getChatPage("' + destUser + '")');
+
+  var i = document.createElement('i');
+  i.setAttribute('class', 'fa fa-user');
+
+  a.appendChild(i);
+  a.appendChild(document.createTextNode(destUser));
+
+  li.appendChild(a);
+
+  listChat.appendChild(li);
+}
+
+function getNewSubjectChatPage(subjectId) {
+  var data = {
+    "type": "subscribe",
+    "data": {
+      "token": sessionStorage.token,
+      "subject_id": subjectId
+    }
+  };
+
+  var payload = JSON.stringify(data);
+  console.log("subscribe request payload: " + payload);
+
+  sock.send(payload);
+}
+
+function getOutgoingFindFriendPage() {
+  $.get('/outgoing-find-friend', updateMainContent);
+}
+
+/**
+ * When click on #Confession menu
+ */
+function getConfessionPage() {
+  $.get('/confession', updateMainContent);
+}
+
+function loadNewConfessionPage() {
+  $.get('/newcfs', updateMainContent);
+}
+
+function submitNewConfession() {
+  var cfsContent = $('#newCfsContentId').val();
+  var data = {
+    "type": "create_cfs",
+    "data": {
+      "token": sessionStorage.token,
+      "content": cfsContent
+    }
+  };
+  var payload = JSON.stringify(data);
+  sock.send(payload);
+}
+
+function submitForgotPassword() {
+  var email = $('#forgotPwdId').val();
+  // TODO
+}
+
+function logout() {
+  window.location = '/';
+}
+
+function getIncomingFindFriendPage() {
+  // $.get('/incoming-find-friend', updateMainContent);
+
+  // call api for getting data
+  var data = {
+    "type": "get_incoming_ff_req",
+    "data": {
+      "token": sessionStorage.token
+    }
+  };
+  var payload = JSON.stringify(data);
+  sock.send(payload);
+}
+
+function updateIncomingFindFriendPage(data) {
+  $('#mainContainer').empty();
+  // generate DOM object
+  for (var index in data) {
+    var row = document.createElement('div');
+    row.setAttribute('class', 'row');
+
+    var col = document.createElement('div');
+    col.setAttribute('class', 'col-md-6');
+
+    var box = document.createElement('div');
+    box.setAttribute('class', 'box box-widget');
+
+    var boxHeader = document.createElement('div');
+    boxHeader.setAttribute('class', 'box-header with-border');
+
+    var userBlock = document.createElement('div');
+    userBlock.setAttribute('class', 'user-block');
+
+    var userBlock1 = document.createElement('img');
+    userBlock1.setAttribute('class', 'img-circle');
+    userBlock1.setAttribute('src', '/images/favicon.ico');
+
+    var userBlock2 = document.createElement('span');
+    userBlock2.setAttribute('class', 'username');
+    userBlock2.appendChild(document.createTextNode(data[index]['created_user'])); // user name
+
+    var userBlock3 = document.createElement('span');
+    userBlock3.setAttribute('class', 'description');
+    userBlock3.appendChild(document.createTextNode(data[index]['last_chat'])); // time
+
+    var boxTools = document.createElement('div');
+    boxTools.setAttribute('class', 'box-tools');
+
+    var btButton = document.createElement('button');
+    btButton.setAttribute('type', 'button');
+    btButton.setAttribute('class', 'btn btn-box-tool');
+    btButton.setAttribute('data-widget', 'remove');
+
+    var btI = document.createElement('i');
+    btI.setAttribute('class', 'fa fa-times');
+
+    var boxBody = document.createElement('div');
+    boxBody.setAttribute('class', 'box-body');
+
+    var boxBodyP = document.createElement('p');
+    boxBodyP.appendChild(document.createTextNode(data[index]['content'])); // content
+
+    var boxFooter = document.createElement('div');
+    boxFooter.setAttribute('class', 'box-footer');
+
+    var boxFooterImg = document.createElement('img');
+    boxFooterImg.setAttribute('class', 'img-responsive img-circle img-sm');
+    boxFooterImg.setAttribute('src', '/images/favicon.ico');
+
+    var boxFooterImgPush = document.createElement('div');
+    boxFooterImgPush.setAttribute('class', 'img-push');
+
+    var boxFooterInput = document.createElement('input');
+    boxFooterInput.setAttribute('type', 'text');
+    boxFooterInput.setAttribute('class', 'form-control input-sm');
+    boxFooterInput.setAttribute('placeholder', 'Press enter to post comment');
+
+    // append child
+
+    userBlock.appendChild(userBlock1);
+    userBlock.appendChild(userBlock2);
+    userBlock.appendChild(userBlock3);
+
+    btButton.appendChild(btI);
+    boxTools.appendChild(btButton);
+
+    boxHeader.appendChild(userBlock);
+    boxHeader.appendChild(boxTools);
+
+    boxBody.appendChild(boxBodyP);
+
+    boxFooterImgPush.appendChild(boxFooterInput);
+    boxFooter.appendChild(boxFooterImg);
+    boxFooter.appendChild(boxFooterImgPush);
+
+    box.appendChild(boxHeader);
+    box.appendChild(boxBody);
+    box.appendChild(boxFooter);
+
+    col.appendChild(box);
+
+    row.appendChild(col);
+
+    $('#mainContainer').append(row);
+  }
+  $(window).trigger('resize');
+}
+
+function addNewSubjectChatMenu(subjectName, pairId) {
+  var listChat = document.getElementById('listSubjectChatId');
+
+  var li = document.createElement('li');
+  li.setAttribute('id', pairId);
+
+  var a = document.createElement('a');
+  a.setAttribute('href', '#');
+  a.setAttribute('onclick', 'getChatPage("' + subjectName + '")');
+
+  var i = document.createElement('i');
+  i.setAttribute('class', 'fa fa-user');
+
+  a.appendChild(i);
+  a.appendChild(document.createTextNode(subjectName));
+
+  li.appendChild(a);
+
+  listChat.appendChild(li);
+}
+
+function updateMainContent(data, status) {
+  $('#mainContainer').empty();
+  $('#mainContainer').html(data);
+  $(window).trigger('resize');
 }
