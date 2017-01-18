@@ -38,7 +38,7 @@ function getNewSubjectChatPage(subjectId) {
 function getChatPage(destUserOrSubject) {
   var destUser;
   // check if param is user or subject
-  if(mapUserPairId.has(destUserOrSubject)){
+  if (mapUserPairId.has(destUserOrSubject)) {
     // is User
     destUser = destUserOrSubject;
   } else {
@@ -229,10 +229,11 @@ function addNewUserChatMenu(destUser) {
   listChat.appendChild(li);
 }
 
-function addNewSubjectChatMenu(subjectName){
+function addNewSubjectChatMenu(subjectName, pairId) {
   var listChat = document.getElementById('listSubjectChatId');
 
   var li = document.createElement('li');
+  li.setAttribute('id', pairId);
 
   var a = document.createElement('a');
   a.setAttribute('href', '#');

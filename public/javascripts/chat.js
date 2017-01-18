@@ -68,7 +68,7 @@ function appendFriendMessage(content) {
   // 0 for myself, 1 for friend, -1 for empty
   var finalFlagElement = document.getElementById('allChatBox').querySelector('#finalChatId');
 
-  if(finalFlagElement.value != '1'){
+  if (finalFlagElement.value != '1') {
     directChatMessage.appendChild(directChatInfo);
     // directChatMessage.appendChild(icon);
   }
@@ -114,7 +114,7 @@ function appendMyMessage(content) {
   // 0 for myself, 1 for friend, -1 for empty
   var finalFlagElement = document.getElementById('allChatBox').querySelector('#finalChatId');
 
-  if(finalFlagElement.value != '0'){
+  if (finalFlagElement.value != '0') {
     directChatMessage.appendChild(directChatInfo);
     // directChatMessage.appendChild(icon);
   }
@@ -162,7 +162,7 @@ function storeFriendMessage(destUser, data) {
   // 0 for myself, 1 for friend, -1 for empty
   var finalFlagElement = oldChatBox.querySelector('#finalChatId');
 
-  if(finalFlagElement.value != '1'){
+  if (finalFlagElement.value != '1') {
     directChatMessage.appendChild(directChatInfo);
     // directChatMessage.appendChild(icon);
   }
@@ -172,6 +172,41 @@ function storeFriendMessage(destUser, data) {
 
   oldChatBox.querySelector('#messagebox').appendChild(directChatMessage);
   mapUserChatContent.set(destUser, oldChatBox);
+}
+
+function updateChatStatus(pairId, offlineMessage) {
+  var destUser = mapPairIdUser.get(pairId);
+  var chatBox = mapUserChatContent.get(destUser);
+
+  var statusMessage = document.createElement('p');
+  statusMessage.setAttribute('class', 'text-red');
+  statusMessage.appendChild(document.createTextNode(offlineMessage));
+  chatBox.querySelector('#messagebox').appendChild(statusMessage);
+
+  mapUserChatContent.set(destUser, chatBox);
+}
+
+function leaveChat() {
+  // Delete chat menu
+  var pairId = mapUserPairId.get(activeChatUser);
+  var menuItem = document.getElementById(pairId);
+  if (menuItem) {
+    menuItem.parentNode.removeChild(menuItem);
+  }
+
+  // Send leave_chat message
+  var data = {
+    "type": "leave_chat",
+    "data": {
+      "pair_id": pairId,
+      "token": sessionStorage.token
+    }
+  };
+  var payload = JSON.stringify(data);
+  sock.send(payload);
+
+  // Load landing content
+  $.get('/landing/content', updateMainContent);
 }
 
 emojify.setConfig({
@@ -186,4 +221,9 @@ emojify.setConfig({
     'CODE': 1
   }
 });
+
+// $('#msgContent').emojiPicker({
+//   height: '300px',
+//   width:  '450px'
+// });
 

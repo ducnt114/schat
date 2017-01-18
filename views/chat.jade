@@ -4,8 +4,8 @@
       .box-header.with-border
         h3.box-title #{destUser}
         .box-tools.pull-right
-          button(class='btn btn-box-tool') Report
-          button(class='btn btn-box-tool') Kết thúc trò chuyện
+          a(href='#' class='btn btn-box-tool' onclick='reportUser()') Report
+          a(href='#' class='btn btn-box-tool' onclick='leaveChat()') Kết thúc trò chuyện
       .box-body#boxbody
         .direct-chat-messages#messagebox
       .box-footer
