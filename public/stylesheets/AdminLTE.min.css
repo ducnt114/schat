@@ -2891,7 +2891,7 @@ table.text-center, table.text-center td, table.text-center th {
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
     padding: 10px;
-    height: 470px;
+    height: 100vh;
     overflow: auto
 }
 

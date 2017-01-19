@@ -1,72 +1,76 @@
-div(class="wrapper")
-  header(class="main-header")
-    a(href="#" class="logo")
-      span(class="logo-lg") Schat
-    nav(class="nav navbar-static-top")
-      a(href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button')
-        span.sr-only Toggle navigation
-      div(class="navbar-custom-menu")
-        ul(class="nav navbar-nav")
-          li(class="user user-menu")
-            a(href='#' onclick='logout()') Đăng xuất
+extends layout
 
-  aside(class="main-sidebar")
-    section(class="sidebar")
-      ul(class="sidebar-menu")
-        li(class="header") Lựa chọn
-        li(class="active treeview")
-          a(href='#' onclick='loadLandingContentPage()')
-            i(class="fa fa-list")
-            | &nbsp Chủ đề
-            span(class="pull-right-container")
-              i(class="fa fa-angle-left pull-right")
-          ul.treeview-menu#listSubjectChatId
-        li(class="active treeview")
-          a(href="#")
-            i(class="fa fa-wechat")
-            | &nbsp Chat
-            span(class="pull-right-container")
-              i(class="fa fa-angle-left pull-right")
-          ul.treeview-menu#listChatUserId
-            li
-              a(href='#' onclick='getNewPairChatPage()')
-                i(class="fa fa-user-plus")
-                | &nbsp Chat mới
-        li
-          a(href='#' onclick='getOutgoingFindFriendPage()')
-            i(class="fa fa-search")
-            | &nbsp Tìm bạn
-        li
-          a(href='#' onclick='getIncomingFindFriendPage()')
-            i(class="fa fa-search")
-            | &nbsp Bạn tìm
-        li
-          a(href="#" onclick='getConfessionPage()')
-            i(class="fa fa-pencil-square-o")
-            | &nbsp Confession
+block content
+
+  div(class="wrapper")
+    header(class="main-header")
+      a(href="#" class="logo")
+        span(class="logo-lg") Schat
+      nav(class="nav navbar-static-top")
+        a(href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button')
+          span.sr-only Toggle navigation
+        div(class="navbar-custom-menu")
+          ul(class="nav navbar-nav")
+            li(class="user user-menu")
+              a(href='#' onclick='logout()') Đăng xuất
+
+    aside(class="main-sidebar")
+      section(class="sidebar")
+        ul(class="sidebar-menu")
+          li(class="header") Lựa chọn
+          li(class="active treeview")
+            a(href='#' onclick='loadLandingContentPage()')
+              i(class="fa fa-list")
+              | &nbsp Chủ đề
+              span(class="pull-right-container")
+                i(class="fa fa-angle-left pull-right")
+            ul.treeview-menu#listSubjectChatId
+          li(class="active treeview")
+            a(href="#")
+              i(class="fa fa-wechat")
+              | &nbsp Chat
+              span(class="pull-right-container")
+                i(class="fa fa-angle-left pull-right")
+            ul.treeview-menu#listChatUserId
+              li
+                a(href='#' onclick='getNewPairChatPage()')
+                  i(class="fa fa-user-plus")
+                  | &nbsp Chat mới
+          li
+            a(href='#' onclick='getOutgoingFindFriendPage()')
+              i(class="fa fa-search")
+              | &nbsp Tìm bạn
+          li
+            a(href='#' onclick='getIncomingFindFriendPage()')
+              i(class="fa fa-search")
+              | &nbsp Bạn tìm
+          li
+            a(href="#" onclick='getConfessionPage()')
+              i(class="fa fa-pencil-square-o")
+              | &nbsp Confession
 
 
-  .content-wrapper
-    section.content
-      .container-fluid#mainContainer
-        .row
-          .col-xs-12
-            .box.box-primary
-              .box-header.with-border
-                h3.box-title Chủ đề
-              .box-body
-                - var i = 0
-                - var boxColors = ['info-box bg-green', 'info-box bg-blue', 'info-box bg-aqua', 'info-box bg-red', 'info-box bg-yellow']
-                for category in categories
-                  if i % 3 == 0
-                    .row
-                  a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
-                    .col-md-4.col-sm-6.col-xs-12
-                      div(class=boxColors[i % 5])
-                        span.info-box-icon
-                          i.fa.fa-send-o
-                        .info-box-content
-                          span.info-box-text #{category.title}
-                          span.info-box-number #{category.user_online}
-                  - i++
-              div(class="box-footer")
+    .content-wrapper
+      section.content
+        .container-fluid#mainContainer
+          .row
+            .col-xs-12
+              .box.box-primary
+                .box-header.with-border
+                  h3.box-title Chủ đề
+                .box-body
+                  - var i = 0
+                  - var boxColors = ['info-box bg-green', 'info-box bg-blue', 'info-box bg-aqua', 'info-box bg-red', 'info-box bg-yellow']
+                  for category in categories
+                    if i % 3 == 0
+                      .row
+                    a(href='#' onclick='getNewSubjectChatPage(#{category.id})')
+                      .col-md-4.col-sm-6.col-xs-12
+                        div(class=boxColors[i % 5])
+                          span.info-box-icon
+                            i.fa.fa-send-o
+                          .info-box-content
+                            span.info-box-text #{category.title}
+                            span.info-box-number #{category.user_online}
+                    - i++
+                div(class="box-footer")
