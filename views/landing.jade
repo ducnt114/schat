@@ -3,6 +3,8 @@ div(class="wrapper")
     a(href="#" class="logo")
       span(class="logo-lg") Schat
     nav(class="nav navbar-static-top")
+      a(href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button')
+        span.sr-only Toggle navigation
       div(class="navbar-custom-menu")
         ul(class="nav navbar-nav")
           li(class="user user-menu")
@@ -46,9 +48,9 @@ div(class="wrapper")
 
   .content-wrapper
     section.content
-      .container#mainContainer
+      .container-fluid#mainContainer
         .row
-          .col-md-10
+          .col-xs-12
             .box.box-primary
               .box-header.with-border
                 h3.box-title Chủ đề
