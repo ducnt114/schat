@@ -16,6 +16,6 @@
     "morgan": "^1.9.1",
     "random-avatar": "^1.0.1",
     "serve-favicon": "^2.5.0",
-    "ws": "^1.1.1"
+    "ws": "^3.3.1"
   }
 }
